@@ -1,14 +1,13 @@
-import { AppPage } from './app.po';
+import { BlogHomePage } from './app.po';
 
 describe('workspace-project App', () => {
-  let page: AppPage;
+  const blogHomePage = new BlogHomePage();
 
   beforeEach(() => {
-    page = new AppPage();
+    blogHomePage.navigateTo()
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to personal-website-angular-frontend!');
+  it('should display blog title', () => {
+    expect(blogHomePage.getTitleText()).toEqual('Kyle Gearhart');
   });
 });
