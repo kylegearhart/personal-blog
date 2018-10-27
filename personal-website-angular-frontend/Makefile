@@ -1,5 +1,8 @@
 .PHONY: e2e
 
+build:
+	ng build
+
 unit:
 	@ng test --watch=false
 
