@@ -18,6 +18,6 @@ describe('AppComponent', () => {
 
   it('should create the app', async(() => {
     expect(fixture.nativeElement.querySelector('h1').textContent)
-      .toContain('Kyle Gearhart');
+      .toContain('Kyle Gearhart\'s Blog');
   }));
 });
