@@ -10,4 +10,4 @@ execute-jar:
 run: test build execute-jar
 
 deploy:
-	git add . && git push heroku master
+	git init && heroku git:remote -a kyle-gearhart-personal-blog && git add . && git commit -m 'deploy to Heroku' && git push heroku master -f && rm -rf .git/
