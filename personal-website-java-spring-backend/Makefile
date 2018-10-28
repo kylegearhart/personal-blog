@@ -8,3 +8,6 @@ execute-jar:
 	java -jar ./build/libs/personal-website-java-spring-backend-0.0.1-SNAPSHOT.jar
 
 run: test execute-jar
+
+deploy:
+	git add . && git push heroku master

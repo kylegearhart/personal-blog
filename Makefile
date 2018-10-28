@@ -24,3 +24,8 @@ run-backend:
 	pushd ./personal-website-java-spring-backend/ && make run && popd
 
 run: test build run-backend
+
+deploy-backend:
+	pushd ./personal-website-java-spring-backend/ && make deploy && popd
+
+deploy: test build deploy-backend
