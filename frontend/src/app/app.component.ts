@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+  blogArticles: { title: string }[]
+
+  constructor() {
+    this.blogArticles = [
+      { title: 'article-title-1' },
+      { title: 'article-title-2' }
+    ]
+  }
 }

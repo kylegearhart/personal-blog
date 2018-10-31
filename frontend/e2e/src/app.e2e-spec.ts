@@ -8,6 +8,12 @@ describe('workspace-project App', () => {
   });
 
   it('should display blog title', () => {
-    expect(blogHomePage.getTitleText()).toEqual('Kyle Gearhart\'s Blog');
+    expect(blogHomePage.getTitleText())
+      .toEqual('Kyle Gearhart\'s Blog');
   });
+
+  it('should display blog article titles', () => {
+    expect(blogHomePage.getBlogArticleTitles())
+      .toEqual(['article-title-1', 'article-title-2']);
+  })
 });

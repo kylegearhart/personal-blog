@@ -8,4 +8,8 @@ export class BlogHomePage {
   getTitleText() {
     return element(by.css('app-root h1')).getText();
   }
+
+  getBlogArticleTitles() {
+    return element.all(by.css('app-root app-blog-article')).getText();
+  }
 }
