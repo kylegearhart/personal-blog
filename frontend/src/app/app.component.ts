@@ -1,17 +1,14 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
+import { BlogArticleService } from './blog-article.service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   blogArticles: { title: string }[]
 
-  constructor() {
-    this.blogArticles = [
-      { title: 'article-title-1' },
-      { title: 'article-title-2' }
-    ]
+  constructor(private blogArticleService: BlogArticleService) {
+    this.blogArticles = blogArticleService.getArticles()
   }
 }
