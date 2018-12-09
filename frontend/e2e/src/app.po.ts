@@ -10,6 +10,6 @@ export class BlogHomePage {
   }
 
   getBlogArticleTitles() {
-    return element.all(by.css('app-root app-blog-article')).getText();
+    return element.all(by.css('app-root app-blog-article-summary')).getText();
   }
 }

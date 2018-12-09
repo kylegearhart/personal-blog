@@ -14,6 +14,6 @@ describe('workspace-project App', () => {
 
   it('should display blog article titles', () => {
     expect(blogHomePage.getBlogArticleTitles())
-      .toEqual(['article-title-1', 'article-title-2']);
+      .toEqual(['blog-title-1', 'blog-title-2']);
   })
 });

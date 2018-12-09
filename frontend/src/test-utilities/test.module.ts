@@ -5,7 +5,6 @@
 import { NgModule } from '@angular/core'
 import { FakeBlogArticleSummaryComponent } from '../app/app.component.spec'
 
-
 @NgModule({
   declarations: [
     FakeBlogArticleSummaryComponent,
