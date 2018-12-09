@@ -9,7 +9,7 @@ describe('workspace-project App', () => {
 
   it('should display blog title', () => {
     expect(blogHomePage.getTitleText())
-      .toEqual('Kyle Gearhart\'s Blog');
+      .toEqual('Hello World');
   });
 
   it('should display blog article titles', () => {
