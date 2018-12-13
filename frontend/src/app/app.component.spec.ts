@@ -7,6 +7,7 @@ import { Component } from '@angular/core'
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>
   let subjectHTMLElement: HTMLElement
+  let subjectInstance: AppComponent
 
   beforeEach(async(() => {
     const blogArticleServiceSpyStub = {
@@ -26,6 +27,7 @@ describe('AppComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent)
     subjectHTMLElement = fixture.nativeElement
+    subjectInstance = fixture.componentInstance
   })
 
   describe('blog article display', () => {
@@ -41,6 +43,21 @@ describe('AppComponent', () => {
       const articleElement: HTMLElement =
         subjectHTMLElement.querySelector('app-blog-article-summary')
       expect(articleElement.title).toBe('title-1')
+    })
+  })
+
+  describe('link to resume', () => {
+    it('has a title', () => {
+      const resumeLink: HTMLElement = subjectHTMLElement.querySelector('a')
+
+      expect(resumeLink.innerText).toEqual('Resume')
+    })
+
+    it('sends user to my LinkedIn profile', () => {
+      fixture.detectChanges()
+
+      const resumeLink: HTMLAnchorElement = subjectHTMLElement.querySelector('a')
+      expect(resumeLink.href).toEqual(subjectInstance.linkedInProfileURL)
     })
   })
 })

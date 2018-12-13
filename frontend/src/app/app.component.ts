@@ -7,6 +7,7 @@ import { BlogArticleService } from './blog-article.service'
 })
 export class AppComponent {
   blogArticles: { title: string }[]
+  linkedInProfileURL = 'https://www.linkedin.com/in/hunter-kyle-gearhart-1a486845'
 
   constructor(private blogArticleService: BlogArticleService) {
     this.blogArticles = blogArticleService.getArticles()
