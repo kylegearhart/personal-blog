@@ -3,7 +3,7 @@
 // in an @NGModule. There should be no need to use this module.
 
 import { NgModule } from '@angular/core'
-import { FakeBlogArticleSummaryComponent } from '../app/app.component.spec'
+import { FakeBlogArticleSummaryComponent } from '../app/blog/blog.component.spec'
 
 @NgModule({
   declarations: [

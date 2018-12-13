@@ -1,8 +1,11 @@
 import {} from 'jasmine'
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { AppComponent } from './app.component'
-import { BlogArticleService } from './blog-article.service'
-import { Component } from '@angular/core'
+import { Router, RouterModule } from '@angular/router'
+import { routes } from './app.module'
+import { BlogComponent } from './blog/blog.component'
+import { AboutComponent } from './about/about.component'
+import { FakeBlogArticleSummaryComponent } from './blog/blog.component.spec'
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>
@@ -15,11 +18,15 @@ describe('AppComponent', () => {
         [ { title: 'title-1' } ],
       ),
     }
+    const routerSpy = {
+      navigate: jasmine.createSpy(),
+    }
 
     TestBed.configureTestingModule({
-      declarations: [ AppComponent, FakeBlogArticleSummaryComponent ],
+      declarations: [ AppComponent, BlogComponent, AboutComponent, FakeBlogArticleSummaryComponent ],
+      imports: [RouterModule.forRoot(routes)],
       providers: [
-        { provide: BlogArticleService, useValue: blogArticleServiceSpyStub },
+        { provide: Router, useValue: routerSpy },
       ],
     })
   }))
@@ -30,37 +37,37 @@ describe('AppComponent', () => {
     subjectInstance = fixture.componentInstance
   })
 
-  describe('blog article display', () => {
-    it('fetches articles with service', () => {
-      const blogArticleService = TestBed.get(BlogArticleService)
+  describe('main navigation', () => {
+    describe('link to About page', () => {
+      it('has a title', () => {
+        const aboutButton: HTMLButtonElement = subjectHTMLElement.querySelector('nav button')
 
-      expect(blogArticleService.getArticles).toHaveBeenCalled()
+        expect(aboutButton.innerText).toEqual('About')
+      })
+
+      it('uses router to show About page', () => {
+        const router = TestBed.get(Router)
+        const aboutButton: HTMLButtonElement = subjectHTMLElement.querySelector('nav button')
+
+        aboutButton.click()
+
+        expect(router.navigate).toHaveBeenCalledWith([ 'about' ])
+      })
     })
 
-    it('displays the returned articles', () => {
-      fixture.detectChanges()
+    describe('link to resume', () => {
+      it('has a title', () => {
+        const resumeLink: HTMLElement = subjectHTMLElement.querySelector('a')
 
-      const articleElement: HTMLElement =
-        subjectHTMLElement.querySelector('app-blog-article-summary')
-      expect(articleElement.title).toBe('title-1')
-    })
-  })
+        expect(resumeLink.innerText).toEqual('Resume')
+      })
 
-  describe('link to resume', () => {
-    it('has a title', () => {
-      const resumeLink: HTMLElement = subjectHTMLElement.querySelector('a')
+      it('sends user to my LinkedIn profile', () => {
+        fixture.detectChanges()
 
-      expect(resumeLink.innerText).toEqual('Resume')
-    })
-
-    it('sends user to my LinkedIn profile', () => {
-      fixture.detectChanges()
-
-      const resumeLink: HTMLAnchorElement = subjectHTMLElement.querySelector('a')
-      expect(resumeLink.href).toEqual(subjectInstance.linkedInProfileURL)
+        const resumeLink: HTMLAnchorElement = subjectHTMLElement.querySelector('nav a')
+        expect(resumeLink.href).toEqual(subjectInstance.linkedInProfileURL)
+      })
     })
   })
 })
-
-@Component({ selector: 'app-blog-article-summary', template: '' })
-export class FakeBlogArticleSummaryComponent {}
