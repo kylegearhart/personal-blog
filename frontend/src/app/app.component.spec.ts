@@ -38,35 +38,61 @@ describe('AppComponent', () => {
   })
 
   describe('main navigation', () => {
-    describe('link to About page', () => {
-      it('has a title', () => {
-        const aboutButton: HTMLButtonElement = subjectHTMLElement.querySelector('nav button')
+    let blogTitleElement: HTMLElement
 
-        expect(aboutButton.innerText).toEqual('About')
+    beforeEach(() => {
+      blogTitleElement = subjectHTMLElement.querySelector('.title')
+    })
+
+    describe('blog title', () => {
+      it('contains title text', () => {
+        expect(blogTitleElement.innerText).toEqual('Hello World')
+      })
+
+      it('navigates to whatever the main contents of the site are', () => {
+        const router = TestBed.get(Router)
+
+        blogTitleElement.click()
+
+        expect(router.navigate).toHaveBeenCalledWith([ '' ])
+      })
+    })
+
+    describe('link to About page', () => {
+      let aboutElement: HTMLButtonElement
+
+      beforeEach(() => {
+       aboutElement = subjectHTMLElement.querySelector('.about')
+      })
+
+      it('has a title', () => {
+        expect(aboutElement.innerText).toEqual('About')
       })
 
       it('uses router to show About page', () => {
         const router = TestBed.get(Router)
-        const aboutButton: HTMLButtonElement = subjectHTMLElement.querySelector('nav button')
 
-        aboutButton.click()
+        aboutElement.click()
 
         expect(router.navigate).toHaveBeenCalledWith([ 'about' ])
       })
     })
 
     describe('link to resume', () => {
-      it('has a title', () => {
-        const resumeLink: HTMLElement = subjectHTMLElement.querySelector('a')
+      let resumeElement: HTMLAnchorElement
 
-        expect(resumeLink.innerText).toEqual('Resume')
+      beforeEach(() => {
+        resumeElement = subjectHTMLElement.querySelector('.resume')
+      })
+
+      it('has a title', () => {
+        expect(resumeElement.innerText).toEqual('Resume')
       })
 
       it('sends user to my LinkedIn profile', () => {
         fixture.detectChanges()
 
-        const resumeLink: HTMLAnchorElement = subjectHTMLElement.querySelector('nav a')
-        expect(resumeLink.href).toEqual(subjectInstance.linkedInProfileURL)
+        expect(resumeElement.href).toEqual(subjectInstance.linkedInProfileURL)
       })
     })
   })

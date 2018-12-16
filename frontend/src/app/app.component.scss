@@ -1,0 +1,13 @@
+nav {
+  display: flex;
+}
+
+.title-link {
+  flex: 1 0 auto;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  flex: 0 0 content;
+}

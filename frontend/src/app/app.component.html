@@ -1,6 +1,10 @@
-<h1>Hello World</h1>
 <nav>
-  <button (click)="showAboutPage()">About</button>
-  <a [href]="linkedInProfileURL">Resume</a>
+  <a class="title-link" (click)="navigateToMainContents()">
+    <h1 class="title">Hello World</h1>
+  </a>
+  <div class="links">
+    <a class="about" (click)="showAboutPage()">About</a>
+    <a class="resume" [href]="linkedInProfileURL">Resume</a>
+  </div>
 </nav>
 <router-outlet></router-outlet>

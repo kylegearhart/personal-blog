@@ -18,6 +18,9 @@ describe('AboutComponent', () => {
 
   it('displays my About blurb', () => {
     const aboutElement: HTMLElement = subjectHTMLElement.querySelector('.about')
+
+    fixture.detectChanges()
+
     expect(aboutElement.innerText).toContain('Kyle Gearhart')
   })
 });
