@@ -1,8 +1,10 @@
 import {} from 'jasmine'
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
 import { BlogComponent } from './blog.component'
 import { BlogArticleService } from '../blog-article.service'
 import { Component } from '@angular/core'
+import { asyncData } from '../../test-utilities/async-helper-functions'
+import { FakeBlogArticleSummaryComponent } from './blog-article-summary/fake-blog-article-summary'
 
 describe('BlogComponent', () => {
   let fixture: ComponentFixture<BlogComponent>
@@ -10,8 +12,8 @@ describe('BlogComponent', () => {
   let subjectInstance: BlogComponent
 
   beforeEach(async(() => {
-    const blogArticleServiceSpyStub = jasmine.createSpyObj('BlogArticleService', ['getArticles'])
-    blogArticleServiceSpyStub.getArticles.and.returnValues([ { title: 'title-1' }])
+    const blogArticleServiceSpyStub = jasmine.createSpyObj('BlogArticleService', [ 'getArticles' ])
+    blogArticleServiceSpyStub.getArticles.and.returnValues(asyncData([ { title: 'title-1' } ]))
 
     TestBed.configureTestingModule({
       declarations: [ BlogComponent, FakeBlogArticleSummaryComponent ],
@@ -20,10 +22,10 @@ describe('BlogComponent', () => {
     TestBed.overrideComponent(BlogComponent, {
       set: {
         providers: [
-          { provide: BlogArticleService, useValue: blogArticleServiceSpyStub }
-        ]
-      }
-    });
+          { provide: BlogArticleService, useValue: blogArticleServiceSpyStub },
+        ],
+      },
+    })
   }))
 
   beforeEach(() => {
@@ -34,6 +36,8 @@ describe('BlogComponent', () => {
 
   describe('blog article display', () => {
     it('fetches articles with service', () => {
+      fixture.detectChanges()
+
       const blogArticleService = fixture.debugElement.injector.get(BlogArticleService)
 
       expect(blogArticleService.getArticles).toHaveBeenCalled()
@@ -42,13 +46,13 @@ describe('BlogComponent', () => {
     it('displays the returned articles', () => {
       fixture.detectChanges()
 
-      const articleElement: HTMLElement =
-        subjectHTMLElement.querySelector('app-blog-article-summary')
-      expect(articleElement.title).toBe('title-1')
+      fixture.whenStable().then(() => {
+        fixture.detectChanges()
+
+        const articleElement: HTMLElement =
+          subjectHTMLElement.querySelector('app-blog-article-summary')
+        expect(articleElement.title).toEqual('title-1')
+      })
     })
   })
-});
-
-@Component({ selector: 'app-blog-article-summary', template: '' })
-export class FakeBlogArticleSummaryComponent {
-}
+})

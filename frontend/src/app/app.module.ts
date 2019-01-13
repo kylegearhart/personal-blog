@@ -7,11 +7,13 @@ import { BlogArticleService } from './blog-article.service';
 import { RouterModule, Routes } from '@angular/router'
 import { AboutComponent } from './about/about.component';
 import { BlogComponent } from './blog/blog.component'
+import { HttpClientModule } from '@angular/common/http'
+import { HttpClientWrapper } from './http/http-client-wrapper'
 
 export const routes: Routes = [
   { path: '', redirectTo: 'blog', pathMatch: 'full' },
-  { path: 'blog', component: BlogComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'blog', component: BlogComponent },
 ]
 
 @NgModule({
@@ -19,13 +21,14 @@ export const routes: Routes = [
     AppComponent,
     BlogArticleSummaryComponent,
     AboutComponent,
-    BlogComponent
+    BlogComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
-  providers: [BlogArticleService],
+  providers: [BlogArticleService, HttpClientWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

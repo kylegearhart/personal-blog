@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { BlogArticleService } from '../blog-article.service'
 
 @Component({
@@ -6,10 +6,15 @@ import { BlogArticleService } from '../blog-article.service'
   templateUrl: './blog.component.html',
   providers: [BlogArticleService]
 })
-export class BlogComponent {
+export class BlogComponent implements OnInit {
   blogArticles: { title: string }[]
 
   constructor(private blogArticleService: BlogArticleService) {
-    this.blogArticles = blogArticleService.getArticles()
+  }
+
+  ngOnInit(): void {
+    this.blogArticleService.getArticles().subscribe((articles: { title: string }[]) => {
+      this.blogArticles = articles
+    })
   }
 }

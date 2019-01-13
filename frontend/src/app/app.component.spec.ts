@@ -5,7 +5,7 @@ import { Router, RouterModule } from '@angular/router'
 import { routes } from './app.module'
 import { BlogComponent } from './blog/blog.component'
 import { AboutComponent } from './about/about.component'
-import { FakeBlogArticleSummaryComponent } from './blog/blog.component.spec'
+import { FakeBlogArticleSummaryComponent } from './blog/blog-article-summary/fake-blog-article-summary'
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>

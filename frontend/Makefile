@@ -3,11 +3,14 @@
 build:
 	ng build
 
+build-prod:
+	ng build --prod
+
 unit:
 	ng test --watch=false
 
 e2e:
-	ng e2e --port 4000
+	ng e2e
 
 test:	unit e2e
 

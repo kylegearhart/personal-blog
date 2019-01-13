@@ -2,8 +2,8 @@
 // when creating mock @Component classes without declaring them
 // in an @NGModule. There should be no need to use this module.
 
-import { NgModule } from '@angular/core'
-import { FakeBlogArticleSummaryComponent } from '../app/blog/blog.component.spec'
+import { Component, NgModule } from '@angular/core'
+import { FakeBlogArticleSummaryComponent } from '../app/blog/blog-article-summary/fake-blog-article-summary'
 
 @NgModule({
   declarations: [
@@ -11,3 +11,4 @@ import { FakeBlogArticleSummaryComponent } from '../app/blog/blog.component.spec
   ],
 })
 export class TestModule { }
+

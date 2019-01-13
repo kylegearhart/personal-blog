@@ -1,6 +1,6 @@
 import { BlogHomePage } from './app.po';
 
-describe('workspace-project App', () => {
+describe('personal website', () => {
   const blogHomePage = new BlogHomePage();
 
   beforeEach(() => {
@@ -14,6 +14,6 @@ describe('workspace-project App', () => {
 
   it('should display blog article titles', () => {
     expect(blogHomePage.getBlogArticleTitles())
-      .toEqual(['blog-title-1', 'blog-title-2']);
+      .toEqual(['A Chance of Rain', 'Nomad Capitalist Book Review']);
   })
 });
