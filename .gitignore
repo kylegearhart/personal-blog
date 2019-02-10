@@ -1,4 +1,4 @@
 .DS_Store
 .idea/
 tasklist.txt
-./backend/src/main/resources/static/
+backend/src/main/resources/static/
