@@ -1,58 +1,50 @@
-import {} from 'jasmine'
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BlogComponent } from './blog.component'
 import { BlogArticleService } from '../blog-article.service'
-import { Component } from '@angular/core'
-import { asyncData } from '../../test-utilities/async-helper-functions'
 import { FakeBlogArticleSummaryComponent } from './blog-article-summary/fake-blog-article-summary'
+import { instance, mock, verify, when } from 'ts-mockito'
+import { Observable, Observer } from 'rxjs'
+import { By } from '@angular/platform-browser'
+import { DebugElement } from '@angular/core'
 
 describe('BlogComponent', () => {
   let fixture: ComponentFixture<BlogComponent>
-  let subjectHTMLElement: HTMLElement
-  let subjectInstance: BlogComponent
+  let subjectDebugElement: DebugElement
+  let blogArticleServiceSpyStub: BlogArticleService
+  let getArticlesObserver: Observer<{ title: string }[]>
 
-  beforeEach(async(() => {
-    const blogArticleServiceSpyStub = jasmine.createSpyObj('BlogArticleService', [ 'getArticles' ])
-    blogArticleServiceSpyStub.getArticles.and.returnValues(asyncData([ { title: 'title-1' } ]))
+  beforeEach(async () => {
+    blogArticleServiceSpyStub = mock(BlogArticleService)
+    when(blogArticleServiceSpyStub.getArticles())
+      .thenReturn(Observable.create(subscriber => {
+        getArticlesObserver = subscriber
+      }))
 
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       declarations: [ BlogComponent, FakeBlogArticleSummaryComponent ],
-    })
+      providers: [
+        { provide: BlogArticleService, useValue: instance(blogArticleServiceSpyStub) },
+      ],
+    }).compileComponents()
 
-    TestBed.overrideComponent(BlogComponent, {
-      set: {
-        providers: [
-          { provide: BlogArticleService, useValue: blogArticleServiceSpyStub },
-        ],
-      },
-    })
-  }))
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(BlogComponent)
-    subjectHTMLElement = fixture.nativeElement
-    subjectInstance = fixture.componentInstance
+    subjectDebugElement = fixture.debugElement
+    fixture.detectChanges()
   })
 
   describe('blog article display', () => {
     it('fetches articles with service', () => {
-      fixture.detectChanges()
-
-      const blogArticleService = fixture.debugElement.injector.get(BlogArticleService)
-
-      expect(blogArticleService.getArticles).toHaveBeenCalled()
+      verify(blogArticleServiceSpyStub.getArticles()).called()
     })
 
     it('displays the returned articles', () => {
+      getArticlesObserver.next([ { title: 'title-1' } ])
       fixture.detectChanges()
 
-      fixture.whenStable().then(() => {
-        fixture.detectChanges()
-
-        const articleElement: HTMLElement =
-          subjectHTMLElement.querySelector('app-blog-article-summary')
-        expect(articleElement.title).toEqual('title-1')
-      })
+      const articleElement = subjectDebugElement.query(
+        By.directive(FakeBlogArticleSummaryComponent),
+      )
+      expect(articleElement.nativeElement.title).toEqual('title-1')
     })
   })
 })
