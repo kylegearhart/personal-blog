@@ -9,11 +9,12 @@ import { AboutComponent } from './about/about.component';
 import { BlogComponent } from './blog/blog.component'
 import { HttpClientModule } from '@angular/common/http'
 import { HttpClientWrapper } from './http/http-client-wrapper'
+import { BlogArticleResolverService } from './blog/blog-article-resolver.service'
 
 export const routes: Routes = [
   { path: '', redirectTo: 'blog', pathMatch: 'full' },
   { path: 'about', component: AboutComponent },
-  { path: 'blog', component: BlogComponent },
+  { path: 'blog', component: BlogComponent, resolve: { blogArticles: BlogArticleResolverService } },
 ]
 
 @NgModule({

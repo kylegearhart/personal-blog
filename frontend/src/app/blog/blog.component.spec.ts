@@ -1,29 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BlogComponent } from './blog.component'
-import { BlogArticleService } from '../blog-article.service'
 import { FakeBlogArticleSummaryComponent } from './blog-article-summary/fake-blog-article-summary'
-import { instance, mock, verify, when } from 'ts-mockito'
+import { instance, mock, when } from 'ts-mockito'
 import { Observable, Observer } from 'rxjs'
 import { By } from '@angular/platform-browser'
 import { DebugElement } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 
 describe('BlogComponent', () => {
   let fixture: ComponentFixture<BlogComponent>
   let subjectDebugElement: DebugElement
-  let blogArticleServiceSpyStub: BlogArticleService
-  let getArticlesObserver: Observer<{ title: string }[]>
+  let activatedRouteStub: ActivatedRoute
+  let activatedRouteDataObserver: Observer<{ blogArticles: { title: string }[] }>
 
   beforeEach(async () => {
-    blogArticleServiceSpyStub = mock(BlogArticleService)
-    when(blogArticleServiceSpyStub.getArticles())
-      .thenReturn(Observable.create(subscriber => {
-        getArticlesObserver = subscriber
-      }))
+    activatedRouteStub = mock(ActivatedRoute)
+    when(activatedRouteStub.data).thenReturn(Observable.create(subscriber => {
+      activatedRouteDataObserver = subscriber
+    }))
 
     await TestBed.configureTestingModule({
       declarations: [ BlogComponent, FakeBlogArticleSummaryComponent ],
       providers: [
-        { provide: BlogArticleService, useValue: instance(blogArticleServiceSpyStub) },
+        { provide: ActivatedRoute, useFactory: () => instance(activatedRouteStub) },
       ],
     }).compileComponents()
 
@@ -33,12 +32,8 @@ describe('BlogComponent', () => {
   })
 
   describe('blog article display', () => {
-    it('fetches articles with service', () => {
-      verify(blogArticleServiceSpyStub.getArticles()).called()
-    })
-
-    it('displays the returned articles', () => {
-      getArticlesObserver.next([ { title: 'title-1' } ])
+    it('displays the articles retrieved in the active route data', () => {
+      activatedRouteDataObserver.next({ blogArticles: [ { title: 'title-1' } ] })
       fixture.detectChanges()
 
       const articleElement = subjectDebugElement.query(

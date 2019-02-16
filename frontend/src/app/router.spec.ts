@@ -43,12 +43,8 @@ describe('router', () => {
   })
 
   describe('initial page or navigation to /', () => {
-    it('shows / route', () => {
-      expect(router.url).toEqual('/')
-    })
-
-    it('shows the no component', () => {
-      expect(nameOfComponentShowedByRouter(fixture)).toBeUndefined()
+    it('reroutes to /blog route', () => {
+      expect(router.url).toEqual('/blog')
     })
   })
 
