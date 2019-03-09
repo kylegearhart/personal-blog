@@ -7,14 +7,21 @@ import { Router } from '@angular/router'
 import { AppComponent } from './app.component'
 import { BlogComponent } from './blog/blog.component'
 import { Location } from '@angular/common'
-import { BlogArticleService } from './blog-article.service'
+import { BlogArticle, BlogArticleResolverService } from './blog/blog-article-resolver.service'
+import { anything, instance, mock, when } from 'ts-mockito'
+import { of } from 'rxjs'
 
 describe('router', () => {
   let router: Router
   let location: Location
   let fixture: ComponentFixture<AppComponent>
+  let stubBlogArticleResolverService: BlogArticleResolverService
 
   beforeEach(async () => {
+    stubBlogArticleResolverService = mock(BlogArticleResolverService)
+    const blogArticles: BlogArticle[] = [ { title: 'article-title' } ]
+    when(stubBlogArticleResolverService.resolve(anything(), anything())).thenReturn(of(blogArticles))
+
     await TestBed.configureTestingModule({
       imports: [ RouterTestingModule.withRoutes(routes) ],
       declarations: [
@@ -23,7 +30,7 @@ describe('router', () => {
         BlogComponent,
       ],
       providers: [
-        BlogArticleService,
+        { provide: BlogArticleResolverService, useValue: instance(stubBlogArticleResolverService) },
       ],
       schemas: [ NO_ERRORS_SCHEMA ],
     }).compileComponents()

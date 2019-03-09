@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core'
-import { BlogArticleService } from '../blog-article.service'
 import { ActivatedRoute } from '@angular/router'
 import { BlogArticle } from './blog-article-resolver.service'
 
@@ -7,11 +6,15 @@ import { BlogArticle } from './blog-article-resolver.service'
   selector: 'app-blog',
   templateUrl: './blog.component.html',
 })
-export class BlogComponent {
-  blogArticles: { title: string }[]
+export class BlogComponent implements OnInit {
+  blogArticles: { title: string }[] = []
 
   constructor(private activatedRoute: ActivatedRoute) {
-    activatedRoute.data.subscribe((data: { blogArticles: BlogArticle[] }) => {
+
+  }
+
+  ngOnInit() {
+    this.activatedRoute.data.subscribe((data: { blogArticles: BlogArticle[] }) => {
       this.blogArticles = data.blogArticles
     })
   }
