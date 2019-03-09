@@ -28,10 +28,12 @@
             "scripts": []
           },
           "configurations": {
-            "production": {
+            "local": {
+            },
+            "prod": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
+                  "replace": "src/environments/environment.local.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
               ],

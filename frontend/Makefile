@@ -1,10 +1,10 @@
 .PHONY: e2e
 
 build:
-	ng build
+	ng build --configuration=local
 
 build-prod:
-	ng build --prod
+	ng build --prod --configuration=prod
 
 unit:
 	ng test --watch=false
