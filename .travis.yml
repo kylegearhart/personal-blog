@@ -18,4 +18,4 @@ script:
   - cd frontend/
   - npm ci
   - ng build --prod --configuration=prod
-  - ng test
+  - ng test --watch=false
