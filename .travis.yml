@@ -15,5 +15,6 @@ before_script:
   - npm install -g @angular/cli
 
 script:
+  - cd frontend/
   - ng build --prod
   - ng test
