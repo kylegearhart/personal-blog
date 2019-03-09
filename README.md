@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kylegearhart/personal-blog.svg?branch=master)](https://travis-ci.com/kylegearhart/personal-blog)
+[![Build Status](https://travis-ci.com/kylegearhart/personal-blog.svg?branch=master)](https://travis-ci.com/kylegearhart/personal-blog)
 
 Hello World (tentative name) is a blog which I plan to use to publish anything I'd like to share.
 
