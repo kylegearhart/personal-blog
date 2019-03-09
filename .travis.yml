@@ -1,21 +1,17 @@
 ---
-sudo: required
-addons:
-  chrome: stable
-
-language: node_js
-node_js:
-  - "10"
-
-branches:
-  only:
-    - master
-
-before_script:
-  - npm install -g @angular/cli
-
-script:
-  - cd frontend/
-  - npm ci
-  - ng build --prod --configuration=prod
-  - ng test --watch=false
+matrix:
+  include:
+  - name: "Angular Client Unit Tests"
+    sudo: required
+    addons:
+      chrome: stable
+    language: node_js
+    node_js:
+      - "10"
+    install:
+      - npm install -g @angular/cli
+      - cd frontend/
+      - npm ci
+    script:
+      - ng build --prod --configuration=prod
+      - ng test --watch=false
