@@ -26,5 +26,10 @@ matrix:
   - name: "E2E Tests"
     language: java
     jdk: oraclejdk8
+    env:
+      - NODE_VERSION="0.12"
+    before_install:
+      - nvm install $NODE_VERSION
+      - npm install -g @angular/cli
     script:
       - make e2e
