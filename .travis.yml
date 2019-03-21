@@ -34,7 +34,7 @@ matrix:
       - npm install -g @angular/cli
       - cd frontend/
       - npm ci
-    script:
       - make build
       - make run-backend-in-background
+    script:
       - make run-e2e
