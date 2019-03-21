@@ -33,4 +33,5 @@ matrix:
       - nvm install $NODE_VERSION
       - npm install -g @angular/cli
       - chmod +x ci-e2e-tests.sh
-    script: ci-e2e-tests.sh
+    script:
+      - bash ci-e2e-tests.sh
