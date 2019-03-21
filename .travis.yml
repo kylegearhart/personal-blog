@@ -35,4 +35,6 @@ matrix:
       - cd frontend/
       - npm ci
     script:
-      - make e2e
+      - make build
+      - make run-backend-in-background
+      - make run-e2e
