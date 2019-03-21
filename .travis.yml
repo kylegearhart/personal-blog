@@ -29,9 +29,6 @@ matrix:
     env:
       - NODE_VERSION="10.9.0"
     before_install:
-      - sudo apt-get --only-upgrade install google-chrome-stable
-      - nvm install $NODE_VERSION
-      - npm install -g @angular/cli
       - chmod +x ci-e2e-tests.sh
     script:
       - bash ci-e2e-tests.sh
