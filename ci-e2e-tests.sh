@@ -2,5 +2,5 @@
 
 cd frontend/
 npm ci
-cd _
+cd -
 make e2e
