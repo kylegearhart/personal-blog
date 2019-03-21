@@ -25,8 +25,16 @@ test-backend:
 
 test: test-frontend test-backend
 
+run-e2e:
+	pushd ./frontend/ && make e2e
+
+e2e: build run-backend-in-background run-e2e
+
 run-backend:
 	pushd ./backend/ && make run && popd
+
+run-backend-in-background:
+	pushd ./backend/ && make execute-jar-in-background && popd
 
 run: test build run-backend
 
