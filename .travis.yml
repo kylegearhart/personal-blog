@@ -32,9 +32,4 @@ matrix:
       - sudo apt-get --only-upgrade install google-chrome-stable
       - nvm install $NODE_VERSION
       - npm install -g @angular/cli
-      - cd frontend/
-      - npm ci
-      - make build
-      - make run-backend-in-background
-    script:
-      - make run-e2e
+    script: ci-e2e-tests.sh
