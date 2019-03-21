@@ -10,6 +10,7 @@ import { Location } from '@angular/common'
 import { BlogArticle, BlogArticleResolverService } from './blog/blog-article-resolver.service'
 import { anything, instance, mock, when } from 'ts-mockito'
 import { of } from 'rxjs'
+import { ArticleDetailComponent } from './blog/article-detail/article-detail.component'
 
 describe('router', () => {
   let router: Router
@@ -27,6 +28,7 @@ describe('router', () => {
       declarations: [
         AppComponent,
         AboutComponent,
+        ArticleDetailComponent,
         BlogComponent,
       ],
       providers: [
@@ -68,6 +70,22 @@ describe('router', () => {
 
     it('shows the blog component', async () => {
       expect(nameOfComponentShowedByRouter(fixture)).toEqual('app-blog')
+    })
+  })
+
+  describe('navigation to a particular blog post (/blog/[article-title])', () => {
+    beforeEach(async () => {
+      await fixture.ngZone.run(async () => {
+        await router.navigateByUrl('/blog/article-title')
+      })
+    })
+
+    it('shows route /blog/article-title', async () => {
+      expect(router.url).toEqual('/blog/article-title')
+    })
+
+    it('shows the blog detail component', async () => {
+      expect(nameOfComponentShowedByRouter(fixture)).toEqual('app-article-detail')
     })
   })
 
