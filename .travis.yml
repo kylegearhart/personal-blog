@@ -23,3 +23,8 @@ matrix:
       - ./gradlew assemble
     script:
       - ./gradlew test
+  - name: "E2E Tests"
+    language: java
+    jdk: oraclejdk8
+    script:
+      - make e2e
