@@ -29,6 +29,7 @@ matrix:
     env:
       - NODE_VERSION="10.9.0"
     before_install:
+      - sudo apt-get --only-upgrade install google-chrome-stable
       - nvm install $NODE_VERSION
       - npm install -g @angular/cli
       - cd frontend/
