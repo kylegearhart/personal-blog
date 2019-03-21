@@ -15,3 +15,11 @@ matrix:
     script:
       - ng build --prod --configuration=prod
       - ng test --watch=false
+  - name: "Java Spring Server Unit Tests"
+    language: java
+    jdk: oraclejdk8
+    install:
+      - cd backend/
+      - ./gradlew assemble
+    script:
+      - ./gradlew test
