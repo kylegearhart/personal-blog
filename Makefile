@@ -19,6 +19,9 @@ build-prod: build-frontend-prod clear-old-frontend-build-artifacts move-frontend
 build-frontend-prod:
 	cd ./frontend/ && make build-prod && cd -
 
+install-frontend-deps:
+	cd ./frontend/ && npm ci && cd -
+
 
 # RUN
 

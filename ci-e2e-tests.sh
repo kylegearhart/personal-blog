@@ -1,6 +1,4 @@
 #!/bin/sh
 
-cd frontend/
-npm ci
-cd -
+make install-frontend-deps
 make e2e
