@@ -31,5 +31,7 @@ matrix:
     before_install:
       - nvm install $NODE_VERSION
       - npm install -g @angular/cli
+      - cd frontend/
+      - npm ci
     script:
       - make e2e
