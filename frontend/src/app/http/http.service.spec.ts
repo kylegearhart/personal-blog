@@ -17,7 +17,7 @@ describe('HttpService', () => {
     })
 
     it('is performed with the given URL', () => {
-      subject.get('a-url')
+      subject.get('a-url', null)
 
       expect(httpClientSpyStub.get).toHaveBeenCalledWith('a-url')
     })
@@ -25,7 +25,7 @@ describe('HttpService', () => {
     it('returns the data retrieved over HTTP', fakeAsync(() => {
       httpClientSpyStub.get.and.returnValue(asyncData('response-data'))
 
-      subject.get('a-url').subscribe((responseData) => {
+      subject.get('a-url', null).subscribe((responseData) => {
         expect(responseData).toEqual('response-data')
       })
 

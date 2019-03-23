@@ -1,25 +1,63 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { ArticleDetailComponent } from './article-detail.component'
+import { DebugElement } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { Observable, Observer } from 'rxjs'
+import { ArticleDetails } from '../../blog-article.service'
+import { instance, mock, when } from 'ts-mockito'
 
 describe('ArticleDetailComponent', () => {
-  let component: ArticleDetailComponent
   let fixture: ComponentFixture<ArticleDetailComponent>
+  let subjectDebugElement: DebugElement
+  let subjectHTMLElement: HTMLElement
+  let activatedRouteStub: ActivatedRoute
+  let activatedRouteDataObserver: Observer<{ articleDetails: ArticleDetails }>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    activatedRouteStub = mock(ActivatedRoute)
+    when(activatedRouteStub.data).thenReturn(Observable.create(subscriber => {
+      activatedRouteDataObserver = subscriber
+    }))
+
+    await TestBed.configureTestingModule({
       declarations: [ ArticleDetailComponent ],
-    })
-      .compileComponents()
-  }))
+      providers: [
+        { provide: ActivatedRoute, useFactory: () => instance(activatedRouteStub) },
+      ],
+    }).compileComponents()
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(ArticleDetailComponent)
-    component = fixture.componentInstance
+    subjectDebugElement = fixture.debugElement
+    subjectHTMLElement = fixture.nativeElement
     fixture.detectChanges()
   })
 
-  it('should create', () => {
-    expect(component).toBeTruthy()
+  describe('article detail display', () => {
+    it('displays the article title', () => {
+      activatedRouteDataObserver.next(
+        { articleDetails: { title: 'test-title', body: '' } },
+      )
+      fixture.detectChanges()
+
+      expect(titleElement().innerText).toEqual('test-title')
+    })
+
+    it('displays the article body', () => {
+      activatedRouteDataObserver.next(
+        { articleDetails: { title: '', body: 'test-body' } },
+      )
+      fixture.detectChanges()
+
+      expect(bodyElement().innerText).toEqual('test-body')
+    })
   })
+
+  function titleElement(): HTMLElement {
+    return subjectHTMLElement.querySelector('.title')
+  }
+
+  function bodyElement(): HTMLElement {
+    return subjectHTMLElement.querySelector('.body')
+  }
 })

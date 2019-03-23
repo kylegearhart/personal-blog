@@ -8,20 +8,23 @@ import { AppComponent } from './app.component'
 import { BlogComponent } from './blog/blog.component'
 import { Location } from '@angular/common'
 import { BlogArticle, BlogArticleResolverService } from './blog/blog-article-resolver.service'
-import { anything, instance, mock, when } from 'ts-mockito'
+import { anything, capture, instance, mock, verify, when } from 'ts-mockito'
 import { of } from 'rxjs'
 import { ArticleDetailComponent } from './blog/article-detail/article-detail.component'
+import { ArticleDetailResolverService } from './blog/article-detail-resolver.service'
 
 describe('router', () => {
   let router: Router
   let location: Location
   let fixture: ComponentFixture<AppComponent>
   let stubBlogArticleResolverService: BlogArticleResolverService
+  let spyArticleDetailResolverService: ArticleDetailResolverService
 
   beforeEach(async () => {
     stubBlogArticleResolverService = mock(BlogArticleResolverService)
     const blogArticles: BlogArticle[] = [ { title: 'article-title' } ]
     when(stubBlogArticleResolverService.resolve(anything(), anything())).thenReturn(of(blogArticles))
+    spyArticleDetailResolverService = mock(ArticleDetailResolverService)
 
     await TestBed.configureTestingModule({
       imports: [ RouterTestingModule.withRoutes(routes) ],
@@ -33,6 +36,10 @@ describe('router', () => {
       ],
       providers: [
         { provide: BlogArticleResolverService, useValue: instance(stubBlogArticleResolverService) },
+        {
+          provide: ArticleDetailResolverService,
+          useValue: instance(spyArticleDetailResolverService),
+        },
       ],
       schemas: [ NO_ERRORS_SCHEMA ],
     }).compileComponents()
@@ -73,19 +80,25 @@ describe('router', () => {
     })
   })
 
-  describe('navigation to a particular blog post (/blog/[article-title])', () => {
+  describe('navigation to a particular blog post (/blog/:article-title)', () => {
     beforeEach(async () => {
       await fixture.ngZone.run(async () => {
-        await router.navigateByUrl('/blog/article-title')
+        await router.navigateByUrl('/blog/test-title')
       })
     })
 
-    it('shows route /blog/article-title', async () => {
-      expect(router.url).toEqual('/blog/article-title')
+    it('shows route /blog/test-title', async () => {
+      expect(router.url).toEqual('/blog/test-title')
     })
 
     it('shows the blog detail component', async () => {
       expect(nameOfComponentShowedByRouter(fixture)).toEqual('app-article-detail')
+    })
+
+    it('resolves article details using the article title in the url path', () => {
+      verify(spyArticleDetailResolverService.resolve(anything(), anything())).once()
+      const [ route ] = capture(spyArticleDetailResolverService.resolve).last()
+      expect(route.params[ 'article-title' ]).toEqual('test-title')
     })
   })
 

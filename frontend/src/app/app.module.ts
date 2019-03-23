@@ -11,12 +11,17 @@ import { HttpClientModule } from '@angular/common/http'
 import { HttpClientWrapper } from './http/http-client-wrapper'
 import { BlogArticleResolverService } from './blog/blog-article-resolver.service'
 import { ArticleDetailComponent } from './blog/article-detail/article-detail.component'
+import { ArticleDetailResolverService } from './blog/article-detail-resolver.service'
 
 export const routes: Routes = [
   { path: '', redirectTo: 'blog', pathMatch: 'full' },
   { path: 'about', component: AboutComponent },
   { path: 'blog', component: BlogComponent, resolve: { blogArticles: BlogArticleResolverService } },
-  { path: 'blog/article-title', component: ArticleDetailComponent },
+  {
+    path: 'blog/:article-title',
+    component: ArticleDetailComponent,
+    resolve: { articleDetails: ArticleDetailResolverService },
+  },
 ]
 
 @NgModule({
@@ -33,6 +38,7 @@ export const routes: Routes = [
     RouterModule.forRoot(routes),
   ],
   providers: [
+    ArticleDetailResolverService,
     BlogArticleResolverService,
     BlogArticleService,
     HttpClientWrapper,

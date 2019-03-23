@@ -10,7 +10,20 @@ export class BlogArticleService {
 
   getArticles(): Observable<{ title: string }[]> {
     return this.httpService.get<{ title: string }[]>(
-      environment.backendURL + '/api/blogArticles'
+      environment.backendURL + '/api/blogArticles',
+      {},
     )
   }
+
+  getArticleDetails(articleTitle: string): Observable<ArticleDetails> {
+    return this.httpService.get<ArticleDetails>(
+      environment.backendURL + '/api/articleDetails',
+      { articleTitle: articleTitle },
+    )
+  }
+}
+
+export interface ArticleDetails {
+  title: string
+  body: string
 }

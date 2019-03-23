@@ -1,15 +1,19 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element } from 'protractor'
 
 export class BlogHomePage {
-  navigateTo() {
+  static navigateTo() {
     return browser.get('/');
   }
 
-  getTitleText() {
+  static getTitleText() {
     return element(by.css('.title')).getText();
   }
 
-  getBlogArticleTitles() {
+  static getBlogArticleSummaries() {
     return element.all(by.css('app-root app-blog-article-summary')).getText();
+  }
+
+  static clickOnFirstBlogArticleSummary() {
+    element.all(by.css('app-root app-blog-article-summary .container')).get(0).click()
   }
 }
