@@ -1,10 +1,9 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing'
+import { fakeAsync, tick } from '@angular/core/testing'
 
-import { HttpService } from './http.service';
-import { HttpClient } from '@angular/common/http'
+import { HttpService } from './http.service'
 import { HttpClientWrapper } from './http-client-wrapper'
-import SpyObj = jasmine.SpyObj
 import { asyncData } from '../../test-utilities/async-helper-functions'
+import SpyObj = jasmine.SpyObj
 
 describe('HttpService', () => {
   let subject: HttpService
@@ -12,7 +11,7 @@ describe('HttpService', () => {
 
   describe('get HTTP requests', () => {
     beforeEach(() => {
-      httpClientSpyStub = jasmine.createSpyObj<HttpClientWrapper>('HttpClientWrapper', ['get'])
+      httpClientSpyStub = jasmine.createSpyObj<HttpClientWrapper>('HttpClientWrapper', [ 'get' ])
       subject = new HttpService(httpClientSpyStub)
     })
 
@@ -32,4 +31,4 @@ describe('HttpService', () => {
       tick()
     }))
   })
-});
+})
