@@ -3,7 +3,7 @@ import { BlogArticleSummaryComponent } from './blog-article-summary.component'
 import { Router } from '@angular/router'
 
 describe('BlogArticleSummaryComponent', () => {
-  let fixture: ComponentFixture<BlogArticleSummaryComponent>;
+  let fixture: ComponentFixture<BlogArticleSummaryComponent>
   let subjectHTMLElement: HTMLElement
   let subjectInstance: BlogArticleSummaryComponent
 
@@ -16,13 +16,13 @@ describe('BlogArticleSummaryComponent', () => {
       declarations: [ BlogArticleSummaryComponent ],
       providers: [ { provide: Router, useValue: spyRouter } ],
     })
-  }));
+  }))
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BlogArticleSummaryComponent)
     subjectHTMLElement = fixture.nativeElement
     subjectInstance = fixture.componentInstance
-  });
+  })
 
   it('displays its title', () => {
     subjectInstance.title = 'title'
@@ -32,16 +32,33 @@ describe('BlogArticleSummaryComponent', () => {
     expect(subjectHTMLElement.innerText).toContain('title')
   })
 
-  describe('when user clicks anywhere in the summary', () => {
-    it('navigates to the respective article detail page', () => {
-      const router = TestBed.get(Router)
+  describe('navigation to article detail screen', () => {
+    let router: Router
+
+    beforeEach(() => {
+      router = TestBed.get(Router)
+    })
+
+    it('navigates to an article named _article-title_', () => {
       subjectInstance.title = 'article-title'
       fixture.detectChanges()
-      const articleSummaryElement: HTMLElement = subjectHTMLElement.querySelector('.container')
 
-      articleSummaryElement.click()
+      getArticleSummaryElement().click()
 
       expect(router.navigate).toHaveBeenCalledWith([ 'blog/article-title' ])
     })
+
+    it('navigates to an article named _different-article-title_', () => {
+      subjectInstance.title = 'different-article-title'
+      fixture.detectChanges()
+
+      getArticleSummaryElement().click()
+
+      expect(router.navigate).toHaveBeenCalledWith([ 'blog/different-article-title' ])
+    })
   })
-});
+
+  function getArticleSummaryElement(): HTMLElement {
+    return subjectHTMLElement.querySelector('.container')
+  }
+})

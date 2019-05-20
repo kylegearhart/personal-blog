@@ -13,6 +13,6 @@ export class BlogArticleSummaryComponent {
   }
 
   navigateToArticleDetail(): void {
-    this.router.navigate([ 'blog/article-title' ])
+    this.router.navigate([ 'blog/' + this.title ])
   }
 }
