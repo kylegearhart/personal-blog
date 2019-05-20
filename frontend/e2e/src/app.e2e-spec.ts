@@ -15,7 +15,7 @@ describe('personal website', () => {
       .toEqual([ 'A Chance of Rain', 'Nomad Capitalist Book Review' ])
   })
 
-  it('should display blog article titles', async () => {
+  it('should display blog article details page', async () => {
     BlogHomePage.clickOnFirstBlogArticleSummary()
 
     expect(await ArticleDetailPage.isDisplayed())

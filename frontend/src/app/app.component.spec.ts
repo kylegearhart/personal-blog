@@ -6,7 +6,7 @@ import { routes } from './app.module'
 import { BlogComponent } from './blog/blog.component'
 import { AboutComponent } from './about/about.component'
 import { FakeBlogArticleSummaryComponent } from './blog/blog-article-summary/fake-blog-article-summary'
-import { ArticleDetailComponent } from './blog/article-detail/article-detail.component'
+import { BlogArticleDetailComponent } from './blog/blog-article-detail/blog-article-detail.component'
 import { BlogArticle } from './blog/model-objects'
 
 describe('AppComponent', () => {
@@ -27,7 +27,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        ArticleDetailComponent,
+        BlogArticleDetailComponent,
         BlogComponent,
         AboutComponent,
         FakeBlogArticleSummaryComponent

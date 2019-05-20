@@ -10,7 +10,7 @@ import { BlogComponent } from './blog/blog.component'
 import { HttpClientModule } from '@angular/common/http'
 import { HttpClientWrapper } from './http/http-client-wrapper'
 import { BlogArticleResolverService } from './blog/blog-article-resolver.service'
-import { ArticleDetailComponent } from './blog/article-detail/article-detail.component'
+import { BlogArticleDetailComponent } from './blog/blog-article-detail/blog-article-detail.component'
 import { ArticleDetailResolverService } from './blog/article-detail-resolver.service'
 
 export const routes: Routes = [
@@ -19,7 +19,7 @@ export const routes: Routes = [
   { path: 'blog', component: BlogComponent, resolve: { blogArticles: BlogArticleResolverService } },
   {
     path: 'blog/:article-title',
-    component: ArticleDetailComponent,
+    component: BlogArticleDetailComponent,
     resolve: { articleDetails: ArticleDetailResolverService },
   },
 ]
@@ -28,7 +28,7 @@ export const routes: Routes = [
   declarations: [
     AboutComponent,
     AppComponent,
-    ArticleDetailComponent,
+    BlogArticleDetailComponent,
     BlogArticleSummaryComponent,
     BlogComponent,
   ],

@@ -1,14 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { ArticleDetailComponent } from './article-detail.component'
+import { BlogArticleDetailComponent } from './blog-article-detail.component'
 import { DebugElement } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Observable, Observer } from 'rxjs'
 import { instance, mock, when } from 'ts-mockito'
 import { BlogArticleDetails } from '../model-objects'
 
-describe('ArticleDetailComponent', () => {
-  let fixture: ComponentFixture<ArticleDetailComponent>
+describe('BlogArticleDetailComponent', () => {
+  let fixture: ComponentFixture<BlogArticleDetailComponent>
   let subjectDebugElement: DebugElement
   let subjectHTMLElement: HTMLElement
   let activatedRouteStub: ActivatedRoute
@@ -21,13 +21,13 @@ describe('ArticleDetailComponent', () => {
     }))
 
     await TestBed.configureTestingModule({
-      declarations: [ ArticleDetailComponent ],
+      declarations: [ BlogArticleDetailComponent ],
       providers: [
         { provide: ActivatedRoute, useFactory: () => instance(activatedRouteStub) },
       ],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(ArticleDetailComponent)
+    fixture = TestBed.createComponent(BlogArticleDetailComponent)
     subjectDebugElement = fixture.debugElement
     subjectHTMLElement = fixture.nativeElement
     fixture.detectChanges()

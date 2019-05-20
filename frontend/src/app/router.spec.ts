@@ -10,7 +10,7 @@ import { Location } from '@angular/common'
 import { BlogArticleResolverService } from './blog/blog-article-resolver.service'
 import { anything, capture, instance, mock, verify, when } from 'ts-mockito'
 import { of } from 'rxjs'
-import { ArticleDetailComponent } from './blog/article-detail/article-detail.component'
+import { BlogArticleDetailComponent } from './blog/blog-article-detail/blog-article-detail.component'
 import { ArticleDetailResolverService } from './blog/article-detail-resolver.service'
 import { BlogArticle } from './blog/model-objects'
 
@@ -32,7 +32,7 @@ describe('router', () => {
       declarations: [
         AppComponent,
         AboutComponent,
-        ArticleDetailComponent,
+        BlogArticleDetailComponent,
         BlogComponent,
       ],
       providers: [
@@ -93,7 +93,7 @@ describe('router', () => {
     })
 
     it('shows the blog detail component', async () => {
-      expect(nameOfComponentShowedByRouter(fixture)).toEqual('app-article-detail')
+      expect(nameOfComponentShowedByRouter(fixture)).toEqual('app-blog-article-detail')
     })
 
     it('resolves article details using the article title in the url path', () => {
