@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { BlogArticle } from './blog-article-resolver.service'
+import { BlogArticle } from './blog-article'
 
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
 })
 export class BlogComponent implements OnInit {
-  blogArticles: { title: string }[] = []
+  blogArticles: BlogArticle[] = []
 
   constructor(private activatedRoute: ActivatedRoute) {
-
   }
 
   ngOnInit() {

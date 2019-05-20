@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core'
 import { HttpService } from './http/http.service'
 import { Observable } from 'rxjs'
 import { environment } from '../environments/environment.local'
+import { BlogArticle } from './blog/blog-article'
 
 @Injectable()
 export class BlogArticleService {
   constructor(private httpService: HttpService) {
   }
 
-  getArticles(): Observable<{ title: string }[]> {
-    return this.httpService.get<{ title: string }[]>(
+  getArticles(): Observable<BlogArticle[]> {
+    return this.httpService.get<BlogArticle[]>(
       environment.backendURL + '/api/blogArticles',
       {},
     )

@@ -7,6 +7,7 @@ import { BlogComponent } from './blog/blog.component'
 import { AboutComponent } from './about/about.component'
 import { FakeBlogArticleSummaryComponent } from './blog/blog-article-summary/fake-blog-article-summary'
 import { ArticleDetailComponent } from './blog/article-detail/article-detail.component'
+import { BlogArticle } from './blog/blog-article'
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>
@@ -16,7 +17,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     const blogArticleServiceSpyStub = {
       getArticles: jasmine.createSpy().and.returnValues(
-        [ { title: 'title-1' } ],
+        [ new BlogArticle('title-1') ],
       ),
     }
     const routerSpy = {

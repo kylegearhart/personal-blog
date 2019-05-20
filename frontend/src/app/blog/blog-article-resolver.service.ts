@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router'
 import { Observable } from 'rxjs'
 import { BlogArticleService } from '../blog-article.service'
+import { BlogArticle } from './blog-article'
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,4 @@ export class BlogArticleResolverService implements Resolve<BlogArticle[]> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<BlogArticle[]> {
     return this.blogArticleService.getArticles()
   }
-}
-
-export interface BlogArticle {
-  title: string
 }
