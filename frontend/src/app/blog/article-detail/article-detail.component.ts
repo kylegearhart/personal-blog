@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { ArticleDetails } from '../../blog-article.service'
+import { BlogArticleDetails } from '../blog-article-details'
 
 @Component({
   selector: 'app-article-detail',
@@ -8,13 +8,13 @@ import { ArticleDetails } from '../../blog-article.service'
   styleUrls: [ './article-detail.component.css' ],
 })
 export class ArticleDetailComponent implements OnInit {
-  articleDetails: ArticleDetails = { title: '', body: '' }
+  articleDetails: BlogArticleDetails = new BlogArticleDetails('', '')
 
   constructor(private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe((data: { articleDetails: ArticleDetails }) => {
+    this.activatedRoute.data.subscribe((data: { articleDetails: BlogArticleDetails }) => {
       this.articleDetails = data.articleDetails
     })
   }

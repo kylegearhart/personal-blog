@@ -7,11 +7,12 @@ import { Router } from '@angular/router'
 import { AppComponent } from './app.component'
 import { BlogComponent } from './blog/blog.component'
 import { Location } from '@angular/common'
-import { BlogArticle, BlogArticleResolverService } from './blog/blog-article-resolver.service'
+import { BlogArticleResolverService } from './blog/blog-article-resolver.service'
 import { anything, capture, instance, mock, verify, when } from 'ts-mockito'
 import { of } from 'rxjs'
 import { ArticleDetailComponent } from './blog/article-detail/article-detail.component'
 import { ArticleDetailResolverService } from './blog/article-detail-resolver.service'
+import { BlogArticle } from './blog/blog-article'
 
 describe('router', () => {
   let router: Router
@@ -22,7 +23,7 @@ describe('router', () => {
 
   beforeEach(async () => {
     stubBlogArticleResolverService = mock(BlogArticleResolverService)
-    const blogArticles: BlogArticle[] = [ { title: 'article-title' } ]
+    const blogArticles: BlogArticle[] = [ new BlogArticle('article-title') ]
     when(stubBlogArticleResolverService.resolve(anything(), anything())).thenReturn(of(blogArticles))
     spyArticleDetailResolverService = mock(ArticleDetailResolverService)
 

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-
 import { BlogArticleSummaryComponent } from './blog-article-summary.component'
 import { Router } from '@angular/router'
 

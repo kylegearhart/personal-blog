@@ -1,8 +1,9 @@
 import { ArticleDetailResolverService } from './article-detail-resolver.service'
-import { ArticleDetails, BlogArticleService } from '../blog-article.service'
+import { BlogArticleService } from '../blog-article.service'
 import { anyString, instance, mock, verify, when } from 'ts-mockito'
 import { ActivatedRouteSnapshot } from '@angular/router'
 import { asyncData } from '../../test-utilities/async-helper-functions'
+import { BlogArticleDetails } from './blog-article-details'
 
 describe('ArticleDetailResolverService', () => {
   let subject: ArticleDetailResolverService
@@ -27,10 +28,10 @@ describe('ArticleDetailResolverService', () => {
     })
 
     it('always returns stub article titles retrieved from server', (done) => {
-      const articleDetails: ArticleDetails = {
-        title: 'blog-article-title',
-        body: 'blog-article-body',
-      }
+      const articleDetails: BlogArticleDetails = new BlogArticleDetails(
+        'blog-article-title',
+        'blog-article-body',
+      )
       when(spyBlogArticleService.getArticleDetails(anyString()))
         .thenReturn(asyncData(articleDetails))
       subject = new ArticleDetailResolverService(instance(spyBlogArticleService))

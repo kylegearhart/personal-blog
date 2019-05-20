@@ -4,15 +4,15 @@ import { ArticleDetailComponent } from './article-detail.component'
 import { DebugElement } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Observable, Observer } from 'rxjs'
-import { ArticleDetails } from '../../blog-article.service'
 import { instance, mock, when } from 'ts-mockito'
+import { BlogArticleDetails } from '../blog-article-details'
 
 describe('ArticleDetailComponent', () => {
   let fixture: ComponentFixture<ArticleDetailComponent>
   let subjectDebugElement: DebugElement
   let subjectHTMLElement: HTMLElement
   let activatedRouteStub: ActivatedRoute
-  let activatedRouteDataObserver: Observer<{ articleDetails: ArticleDetails }>
+  let activatedRouteDataObserver: Observer<{ articleDetails: BlogArticleDetails }>
 
   beforeEach(async () => {
     activatedRouteStub = mock(ActivatedRoute)

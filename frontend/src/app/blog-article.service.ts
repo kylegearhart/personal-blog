@@ -3,6 +3,7 @@ import { HttpService } from './http/http.service'
 import { Observable } from 'rxjs'
 import { environment } from '../environments/environment.local'
 import { BlogArticle } from './blog/blog-article'
+import { BlogArticleDetails } from './blog/blog-article-details'
 
 @Injectable()
 export class BlogArticleService {
@@ -16,15 +17,10 @@ export class BlogArticleService {
     )
   }
 
-  getArticleDetails(articleTitle: string): Observable<ArticleDetails> {
-    return this.httpService.get<ArticleDetails>(
+  getArticleDetails(articleTitle: string): Observable<BlogArticleDetails> {
+    return this.httpService.get<BlogArticleDetails>(
       environment.backendURL + '/api/articleDetails',
       { articleTitle: articleTitle },
     )
   }
-}
-
-export interface ArticleDetails {
-  title: string
-  body: string
 }
