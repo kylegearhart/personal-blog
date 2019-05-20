@@ -3,7 +3,7 @@ import { BlogArticleService } from '../blog-article.service'
 import { anyString, instance, mock, verify, when } from 'ts-mockito'
 import { ActivatedRouteSnapshot } from '@angular/router'
 import { asyncData } from '../../test-utilities/async-helper-functions'
-import { BlogArticleDetails } from './blog-article-details'
+import { BlogArticleDetails } from './model-objects'
 
 describe('ArticleDetailResolverService', () => {
   let subject: ArticleDetailResolverService

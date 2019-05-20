@@ -7,7 +7,7 @@ import { BlogComponent } from './blog/blog.component'
 import { AboutComponent } from './about/about.component'
 import { FakeBlogArticleSummaryComponent } from './blog/blog-article-summary/fake-blog-article-summary'
 import { ArticleDetailComponent } from './blog/article-detail/article-detail.component'
-import { BlogArticle } from './blog/blog-article'
+import { BlogArticle } from './blog/model-objects'
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>

@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Observable, Observer } from 'rxjs'
 import { instance, mock, when } from 'ts-mockito'
-import { BlogArticleDetails } from '../blog-article-details'
+import { BlogArticleDetails } from '../model-objects'
 
 describe('ArticleDetailComponent', () => {
   let fixture: ComponentFixture<ArticleDetailComponent>

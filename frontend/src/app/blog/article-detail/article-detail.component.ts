@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { BlogArticleDetails } from '../blog-article-details'
+import { BlogArticleDetails } from '../model-objects'
 
 @Component({
   selector: 'app-article-detail',

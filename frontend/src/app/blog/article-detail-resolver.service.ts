@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { BlogArticleService } from '../blog-article.service'
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router'
 import { Observable } from 'rxjs'
-import { BlogArticleDetails } from './blog-article-details'
+import { BlogArticleDetails } from './model-objects'
 
 @Injectable({
   providedIn: 'root',
