@@ -15,10 +15,12 @@ describe('HttpService', () => {
       subject = new HttpService(httpClientSpyStub)
     })
 
-    it('is performed with the given URL', () => {
-      subject.get('a-url', null)
+    it('is performed with the given URL and query params', () => {
+      subject.get('a-url', { 'some-param': 'some-value' })
 
-      expect(httpClientSpyStub.get).toHaveBeenCalledWith('a-url')
+      expect(httpClientSpyStub.get).toHaveBeenCalledWith(
+        'a-url', { 'params': { 'some-param': 'some-value' } },
+      )
     })
 
     it('returns the data retrieved over HTTP', fakeAsync(() => {

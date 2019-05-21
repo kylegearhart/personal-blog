@@ -16,9 +16,9 @@ describe('personal website', () => {
   })
 
   it('should display blog article details page', async () => {
-    BlogHomePage.clickOnFirstBlogArticleSummary()
+    BlogHomePage.clickOnSecondBlogArticleSummary()
 
     expect(await ArticleDetailPage.isDisplayed())
-    expect(await ArticleDetailPage.articleTitleText()).toEqual('Blog Article Title')
+    expect(await ArticleDetailPage.articleTitleText()).toEqual('Nomad Capitalist Book Review')
   })
 });

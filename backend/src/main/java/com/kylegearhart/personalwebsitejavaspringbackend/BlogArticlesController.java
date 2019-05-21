@@ -10,11 +10,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/blogArticles")
 public class BlogArticlesController {
-    @GetMapping
-    public List<BlogArticle> getBlogArticles() {
-        return Arrays.asList(
-                new BlogArticle("A Chance of Rain"),
-                new BlogArticle("Nomad Capitalist Book Review")
-        );
-    }
+  @GetMapping
+  public List<BlogArticle> getBlogArticles() {
+    return Arrays.asList(
+            new BlogArticle("A Chance of Rain"),
+            new BlogArticle("Nomad Capitalist Book Review")
+    );
+  }
 }

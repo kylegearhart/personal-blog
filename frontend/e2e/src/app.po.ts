@@ -13,7 +13,7 @@ export class BlogHomePage {
     return element.all(by.css('app-root app-blog-article-summary')).getText();
   }
 
-  static clickOnFirstBlogArticleSummary() {
-    element.all(by.css('app-root app-blog-article-summary .container')).get(0).click()
+  static clickOnSecondBlogArticleSummary() {
+    element.all(by.css('app-root app-blog-article-summary .container')).get(1).click()
   }
 }

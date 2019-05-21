@@ -9,9 +9,7 @@ export class HttpService {
   constructor(private httpClientWrapper: HttpClientWrapper) {
   }
 
-  // TODO: Actually use the queryParams to query the server for the correct article details.
-  // noinspection JSUnusedLocalSymbols
   get<T>(url: string, queryParams: Object): Observable<T> {
-    return this.httpClientWrapper.get(url)
+    return this.httpClientWrapper.get(url, { params: queryParams })
   }
 }

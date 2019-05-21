@@ -7,7 +7,9 @@ export class HttpClientWrapper {
   constructor(private httpClient: HttpClient) {
   }
 
-  get<T>(url: string): Observable<T> {
-    return this.httpClient.get<T>(url)
+  get<T>(url: string, queryParams: Object): Observable<T> {
+    return this.httpClient.get<T>(
+      url, queryParams
+    )
   }
 }
