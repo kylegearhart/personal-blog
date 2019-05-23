@@ -1,5 +1,5 @@
 import { ArticleDetailResolverService } from './article-detail-resolver.service'
-import { BlogArticleService } from '../blog-article.service'
+import { BlogArticleService } from './blog-article.service'
 import { anyString, instance, mock, verify, when } from 'ts-mockito'
 import { ActivatedRouteSnapshot } from '@angular/router'
 import { asyncData } from '../../test-utilities/async-helper-functions'

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { BlogArticleService } from '../blog-article.service'
+import { BlogArticleService } from './blog-article.service'
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router'
 import { Observable } from 'rxjs'
 import { BlogArticleDetails } from './model-objects'

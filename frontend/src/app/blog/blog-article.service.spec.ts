@@ -1,7 +1,7 @@
 import { BlogArticleService } from './blog-article.service'
 import { fakeAsync, tick } from '@angular/core/testing'
-import { HttpService } from './http/http.service'
-import { asyncData } from '../test-utilities/async-helper-functions'
+import { HttpService } from '../http/http.service'
+import { asyncData } from '../../test-utilities/async-helper-functions'
 import SpyObj = jasmine.SpyObj
 
 describe('BlogArticleService', () => {

@@ -1,7 +1,7 @@
 import { BlogArticleResolverService } from './blog-article-resolver.service'
 import { instance, mock, verify, when } from 'ts-mockito'
 import { asyncData } from '../../test-utilities/async-helper-functions'
-import { BlogArticleService } from '../blog-article.service'
+import { BlogArticleService } from './blog-article.service'
 
 describe('BlogArticleResolverService', () => {
   let subject: BlogArticleResolverService

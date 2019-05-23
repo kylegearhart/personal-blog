@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 
 import { AppComponent } from './app.component'
 import { BlogArticleSummaryComponent } from './blog/blog-article-summary/blog-article-summary.component'
-import { BlogArticleService } from './blog-article.service'
+import { BlogArticleService } from './blog/blog-article.service'
 import { RouterModule, Routes } from '@angular/router'
 import { AboutComponent } from './about/about.component'
 import { BlogComponent } from './blog/blog.component'
