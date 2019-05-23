@@ -16,8 +16,8 @@ public class HashMapArticleDetailsRepositoryTest {
     }
 
     @Test
-    public void getArticleDetails_returnsArticleDetails_whenGivenArticleTitleIsFoundInHashMap() {
-        ArticleDetails actual = this.subject.getArticleDetails("A Chance of Rain");
+    public void getArticleDetails_returnsArticleDetails_whenGivenArticleTitleTakenFromTheURLIsFoundInHashMap() {
+        ArticleDetails actual = this.subject.getArticleDetails("A-Chance-of-Rain");
 
         assertThat(actual.getTitle(), is(equalTo("A Chance of Rain")));
         assertThat(actual.getBody(), is(equalTo("Body Text")));

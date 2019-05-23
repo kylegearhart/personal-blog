@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { Router } from '@angular/router'
+import { replaceSpacesWithHyphensForDisplayInURL } from '../blog-article-title-formatter'
 
 @Component({
   selector: 'app-blog-article-summary',
@@ -13,6 +14,6 @@ export class BlogArticleSummaryComponent {
   }
 
   navigateToArticleDetail(): void {
-    this.router.navigate([ 'blog/' + this.title ])
+    this.router.navigate([ 'blog/' + replaceSpacesWithHyphensForDisplayInURL(this.title) ])
   }
 }

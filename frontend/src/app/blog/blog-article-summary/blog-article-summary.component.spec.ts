@@ -56,6 +56,15 @@ describe('BlogArticleSummaryComponent', () => {
 
       expect(router.navigate).toHaveBeenCalledWith([ 'blog/different-article-title' ])
     })
+
+    it('inserts hyphens for spaces in the article title in the URL', () => {
+      subjectInstance.title = 'article title with spaces'
+      fixture.detectChanges()
+
+      getArticleSummaryElement().click()
+
+      expect(router.navigate).toHaveBeenCalledWith([ 'blog/article-title-with-spaces' ])
+    })
   })
 
   function getArticleSummaryElement(): HTMLElement {
