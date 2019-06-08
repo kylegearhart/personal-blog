@@ -14,6 +14,6 @@ export class BlogHomePage {
   }
 
   static clickOnSecondBlogArticleSummary() {
-    element.all(by.css('app-root app-blog-article-summary .container')).get(1).click()
+    element.all(by.css('app-root app-blog-article-summary')).get(1).click()
   }
 }
