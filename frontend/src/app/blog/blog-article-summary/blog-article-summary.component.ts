@@ -5,6 +5,7 @@ import { replaceSpacesWithHyphensForDisplayInURL } from '../blog-article-title-f
 @Component({
   selector: 'app-blog-article-summary',
   templateUrl: './blog-article-summary.component.html',
+  styleUrls: [ './blog-article-summary.component.scss' ],
 })
 export class BlogArticleSummaryComponent {
   @Input() title: string

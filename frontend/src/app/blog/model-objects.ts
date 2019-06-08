@@ -6,7 +6,8 @@ export class BlogArticle {
   }
 }
 
-export class BlogArticleDetails { title: string
+export class BlogArticleDetails {
+  title: string
   body: string
 
   constructor(title: string, body: string) {

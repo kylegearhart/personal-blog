@@ -68,6 +68,6 @@ describe('BlogArticleSummaryComponent', () => {
   })
 
   function getArticleSummaryElement(): HTMLElement {
-    return subjectHTMLElement.querySelector('.container')
+    return subjectHTMLElement.querySelector('.blog-article-summary')
   }
 })

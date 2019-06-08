@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: flex-start;
+}
+
+app-blog-article-summary {
+  flex: 0 1 25%;
+  margin: 1rem;
+}
