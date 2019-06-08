@@ -12,7 +12,7 @@ describe('personal website', () => {
 
   it('should display blog article titles', async () => {
     expect(await BlogHomePage.getBlogArticleSummaries())
-      .toEqual([ 'A Chance of Rain', 'Nomad Capitalist Book Review' ])
+      .toEqual([ 'A Chance of Rain', 'Nomad Capitalist Book Review', 'Do What is Meaningful' ])
   })
 
   it('should display blog article details page', async () => {
