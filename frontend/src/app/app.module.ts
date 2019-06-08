@@ -8,10 +8,11 @@ import { RouterModule, Routes } from '@angular/router'
 import { AboutComponent } from './about/about.component'
 import { BlogComponent } from './blog/blog.component'
 import { HttpClientModule } from '@angular/common/http'
-import { HttpClientWrapper } from './http/http-client-wrapper'
 import { BlogArticleResolverService } from './blog/blog-article-resolver.service'
 import { BlogArticleDetailComponent } from './blog/blog-article-detail/blog-article-detail.component'
 import { ArticleDetailResolverService } from './blog/article-detail-resolver.service'
+import { StubHttpAdapter } from './http/stub-http-adapter'
+import { HttpAdapterInterface } from './http/http.service'
 
 export const routes: Routes = [
   { path: '', redirectTo: 'blog', pathMatch: 'full' },
@@ -41,7 +42,8 @@ export const routes: Routes = [
     ArticleDetailResolverService,
     BlogArticleResolverService,
     BlogArticleService,
-    HttpClientWrapper,
+    { provide: HttpAdapterInterface, useClass: StubHttpAdapter },
+    // StubHttpAdapter,
   ],
   bootstrap: [AppComponent]
 })
