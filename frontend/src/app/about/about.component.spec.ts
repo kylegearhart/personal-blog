@@ -23,4 +23,4 @@ describe('AboutComponent', () => {
 
     expect(aboutElement.innerText).toContain('Kyle Gearhart')
   })
-});
+})

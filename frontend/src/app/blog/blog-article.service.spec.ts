@@ -3,7 +3,6 @@ import { fakeAsync, tick } from '@angular/core/testing'
 import { HttpService } from '../http/http.service'
 import { asyncData } from '../../test-utilities/async-helper-functions'
 import SpyObj = jasmine.SpyObj
-import { BlogArticle } from './model-objects'
 
 describe('BlogArticleService', () => {
   let httpServiceSpyStub: SpyObj<HttpService>
@@ -30,7 +29,7 @@ describe('BlogArticleService', () => {
       subject = new BlogArticleService(httpServiceSpyStub)
 
       subject.getArticles().subscribe((result) => {
-        expect(result).toEqual([{ title: 'title', bodyPreview: 'body-preview' }])
+        expect(result).toEqual([ { title: 'title', bodyPreview: 'body-preview' } ])
       })
 
       tick()

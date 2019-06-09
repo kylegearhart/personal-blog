@@ -10,15 +10,15 @@ import javax.websocket.server.PathParam;
 @RestController
 @RequestMapping("/api/articleDetails")
 final class ArticleDetailsController {
-    private final ArticleDetailsRepository articleDetailsRepository;
+  private final ArticleDetailsRepository articleDetailsRepository;
 
-    @Autowired
-    ArticleDetailsController(ArticleDetailsRepository articleDetailsRepository) {
-        this.articleDetailsRepository = articleDetailsRepository;
-    }
+  @Autowired
+  ArticleDetailsController(ArticleDetailsRepository articleDetailsRepository) {
+    this.articleDetailsRepository = articleDetailsRepository;
+  }
 
-    @GetMapping
-    public ArticleDetails getBlogArticles(@PathParam("articleTitle") String articleTitle) {
-        return this.articleDetailsRepository.getArticleDetails(articleTitle);
-    }
+  @GetMapping
+  public ArticleDetails getBlogArticles(@PathParam("articleTitle") String articleTitle) {
+    return this.articleDetailsRepository.getArticleDetails(articleTitle);
+  }
 }

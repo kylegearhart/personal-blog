@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 public class PersonalWebsiteJavaSpringBackendApplication implements ErrorController {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PersonalWebsiteJavaSpringBackendApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(PersonalWebsiteJavaSpringBackendApplication.class, args);
+  }
 
-	@RequestMapping("/error")
-	public String forwardUserOntoAngularApp() {
-		return "forward:/index.html";
-	}
+  @RequestMapping("/error")
+  public String forwardUserOntoAngularApp() {
+    return "forward:/index.html";
+  }
 
-	@Override
-	public String getErrorPath() {
-		return "/error";
-	}
+  @Override
+  public String getErrorPath() {
+    return "/error";
+  }
 }

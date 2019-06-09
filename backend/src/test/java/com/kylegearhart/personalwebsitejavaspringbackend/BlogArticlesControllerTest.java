@@ -16,22 +16,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class BlogArticlesControllerTest {
-    @Autowired
-    MockMvc mockMvc;
+  @Autowired
+  MockMvc mockMvc;
 
-    @Test
-    public void get_returnsOkStatus() throws Exception {
-        this.mockMvc.perform(get("/api/blogArticles")).andExpect(status().isOk());
-    }
+  @Test
+  public void get_returnsOkStatus() throws Exception {
+    this.mockMvc.perform(get("/api/blogArticles")).andExpect(status().isOk());
+  }
 
-    @Test
-    public void get_returnsStockBlogArticlesData() throws Exception {
-        this.mockMvc.perform(get("/api/blogArticles"))
-                .andExpect(jsonPath("$[0].title").value("A Chance of Rain"))
-                .andExpect(jsonPath("$[0].bodyPreview").value("(body-preview) A Chance of Rain"))
-                .andExpect(jsonPath("$[1].title").value("Nomad Capitalist Book Review"))
-                .andExpect(jsonPath("$[1].bodyPreview").value("(body-preview) Nomad Capitalist Book Review"))
-                .andExpect(jsonPath("$[2].title").value("Do What is Meaningful"))
-                .andExpect(jsonPath("$[2].bodyPreview").value("(body-preview) Do What is Meaningful"));
-    }
+  @Test
+  public void get_returnsStockBlogArticlesData() throws Exception {
+    this.mockMvc.perform(get("/api/blogArticles"))
+      .andExpect(jsonPath("$[0].title").value("A Chance of Rain"))
+      .andExpect(jsonPath("$[0].bodyPreview").value("(body-preview) A Chance of Rain"))
+      .andExpect(jsonPath("$[1].title").value("Nomad Capitalist Book Review"))
+      .andExpect(jsonPath("$[1].bodyPreview").value("(body-preview) Nomad Capitalist Book Review"))
+      .andExpect(jsonPath("$[2].title").value("Do What is Meaningful"))
+      .andExpect(jsonPath("$[2].bodyPreview").value("(body-preview) Do What is Meaningful"));
+  }
 }

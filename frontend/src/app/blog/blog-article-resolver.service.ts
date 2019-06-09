@@ -5,7 +5,7 @@ import { BlogArticleService } from './blog-article.service'
 import { BlogArticle } from './model-objects'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BlogArticleResolverService implements Resolve<BlogArticle[]> {
 

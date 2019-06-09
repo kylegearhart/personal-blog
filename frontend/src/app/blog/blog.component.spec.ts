@@ -45,9 +45,9 @@ describe('BlogComponent', () => {
       fixture.detectChanges()
 
       const articleElement = subjectDebugElement.queryAll(By.directive(FakeBlogArticleSummaryComponent))
-      expect(articleElement[0].componentInstance.article).toEqual(ModelObjectFixtures.blogArticle)
-      expect(articleElement[1].componentInstance.article).toEqual(ModelObjectFixtures.blogArticle)
-      expect(articleElement[2].componentInstance.article).toEqual(ModelObjectFixtures.blogArticle)
+      expect(articleElement[ 0 ].componentInstance.article).toEqual(ModelObjectFixtures.blogArticle)
+      expect(articleElement[ 1 ].componentInstance.article).toEqual(ModelObjectFixtures.blogArticle)
+      expect(articleElement[ 2 ].componentInstance.article).toEqual(ModelObjectFixtures.blogArticle)
     })
   })
 })

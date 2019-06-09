@@ -9,22 +9,22 @@ import java.util.Map;
 @Primary
 @Repository
 class HashMapArticleDetailsRepository implements ArticleDetailsRepository {
-    private Map<String, ArticleDetails> articleTitleToDetailsMap = createArticleTitleInURLToDetailsMap();
+  private Map<String, ArticleDetails> articleTitleToDetailsMap = createArticleTitleInURLToDetailsMap();
 
-    private static Map<String, ArticleDetails> createArticleTitleInURLToDetailsMap() {
-        Map<String, ArticleDetails> map = new HashMap<>();
-        map.put("A-Chance-of-Rain", new ArticleDetails("A Chance of Rain", "Body Text"));
-        map.put("Nomad-Capitalist-Book-Review", new ArticleDetails("Nomad Capitalist Book Review", "Body Text"));
-        map.put("Do-What-is-Meaningful", new ArticleDetails("Do What is Meaningful", "Body Text"));
+  private static Map<String, ArticleDetails> createArticleTitleInURLToDetailsMap() {
+    Map<String, ArticleDetails> map = new HashMap<>();
+    map.put("A-Chance-of-Rain", new ArticleDetails("A Chance of Rain", "Body Text"));
+    map.put("Nomad-Capitalist-Book-Review", new ArticleDetails("Nomad Capitalist Book Review", "Body Text"));
+    map.put("Do-What-is-Meaningful", new ArticleDetails("Do What is Meaningful", "Body Text"));
 
-        return map;
-    }
+    return map;
+  }
 
-    @Override
-    public ArticleDetails getArticleDetails(String articleTitle) {
-        return articleTitleToDetailsMap.getOrDefault(
-                articleTitle,
-                new ArticleDetails("", "")
-        );
-    }
+  @Override
+  public ArticleDetails getArticleDetails(String articleTitle) {
+    return articleTitleToDetailsMap.getOrDefault(
+      articleTitle,
+      new ArticleDetails("", "")
+    );
+  }
 }
