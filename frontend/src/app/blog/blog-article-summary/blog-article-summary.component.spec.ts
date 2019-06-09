@@ -109,6 +109,6 @@ describe('BlogArticleSummaryComponent', () => {
   }
 
   function getReadMoreButtonElement(): HTMLElement {
-    return subjectHTMLElement.querySelector('.read-more-button')
+    return subjectHTMLElement.querySelector('.readMoreButton')
   }
 })

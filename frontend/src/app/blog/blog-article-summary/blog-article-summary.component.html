@@ -1,5 +1,7 @@
 <div class="blog-article-summary" (click)="navigateToArticleDetail()">
   <p class="title">{{article.title}}</p>
-  <p class="bodyPreview">{{article.bodyPreview}}</p>
-  <a class="read-more-button" href="{{getArticleDetailUrl()}}">Read More</a>
+  <div class="bodyPreviewContainer">
+    <p class="bodyPreview">{{article.bodyPreview}}</p>
+    <a class="readMoreButton" href="{{getArticleDetailUrl()}}">Read More</a>
+  </div>
 </div>
