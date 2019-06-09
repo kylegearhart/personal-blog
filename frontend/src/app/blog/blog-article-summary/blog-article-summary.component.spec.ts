@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { BlogArticleSummaryComponent } from './blog-article-summary.component'
 import { Router } from '@angular/router'
+import ModelObjectFixtures from '../../../test-utilities/model-object-fixtures'
 
 describe('BlogArticleSummaryComponent', () => {
   let fixture: ComponentFixture<BlogArticleSummaryComponent>
@@ -24,12 +25,16 @@ describe('BlogArticleSummaryComponent', () => {
     subjectInstance = fixture.componentInstance
   })
 
-  it('displays its title', () => {
-    subjectInstance.title = 'title'
+  describe('article summary display', () => {
+    it('displays its title and body preview', () => {
+      subjectInstance.article = ModelObjectFixtures.blogArticle
 
-    fixture.detectChanges()
+      fixture.detectChanges()
 
-    expect(subjectHTMLElement.innerText).toContain('title')
+      const { title, bodyPreview } = ModelObjectFixtures.blogArticle
+      expect(subjectHTMLElement.innerText).toContain(title)
+      expect(subjectHTMLElement.innerText).toContain(bodyPreview)
+    })
   })
 
   describe('navigation to article detail screen', () => {
@@ -37,10 +42,11 @@ describe('BlogArticleSummaryComponent', () => {
 
     beforeEach(() => {
       router = TestBed.get(Router)
+      subjectInstance.article = ModelObjectFixtures.blogArticle
     })
 
     it('navigates to an article named _article-title_', () => {
-      subjectInstance.title = 'article-title'
+      subjectInstance.article.title = 'article-title'
       fixture.detectChanges()
 
       getArticleSummaryElement().click()
@@ -49,7 +55,7 @@ describe('BlogArticleSummaryComponent', () => {
     })
 
     it('navigates to an article named _different-article-title_', () => {
-      subjectInstance.title = 'different-article-title'
+      subjectInstance.article.title = 'different-article-title'
       fixture.detectChanges()
 
       getArticleSummaryElement().click()
@@ -58,7 +64,7 @@ describe('BlogArticleSummaryComponent', () => {
     })
 
     it('inserts hyphens for spaces in the article title in the URL', () => {
-      subjectInstance.title = 'article title with spaces'
+      subjectInstance.article.title = 'article title with spaces'
       fixture.detectChanges()
 
       getArticleSummaryElement().click()

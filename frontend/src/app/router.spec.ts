@@ -23,8 +23,7 @@ describe('router', () => {
 
   beforeEach(async () => {
     stubBlogArticleResolverService = mock(BlogArticleResolverService)
-    const blogArticles: BlogArticle[] = [ new BlogArticle('article-title') ]
-    when(stubBlogArticleResolverService.resolve(anything(), anything())).thenReturn(of(blogArticles))
+    when(stubBlogArticleResolverService.resolve(anything(), anything())).thenReturn(of([]))
     spyArticleDetailResolverService = mock(ArticleDetailResolverService)
 
     await TestBed.configureTestingModule({

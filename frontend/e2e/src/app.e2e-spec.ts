@@ -11,8 +11,11 @@ describe('personal website', () => {
   });
 
   it('should display blog article titles', async () => {
-    expect(await BlogHomePage.getBlogArticleSummaries())
-      .toEqual([ 'A Chance of Rain', 'Nomad Capitalist Book Review', 'Do What is Meaningful' ])
+    // @ts-ignore
+    const blogArticleSummariesText: string[] = await BlogHomePage.getBlogArticleSummariesText()
+    expect(blogArticleSummariesText[0]).toContain('A Chance of Rain')
+    expect(blogArticleSummariesText[1]).toContain('Nomad Capitalist Book Review')
+    expect(blogArticleSummariesText[2]).toContain('Do What is Meaningful')
   })
 
   it('should display blog article details page', async () => {

@@ -1,4 +1,3 @@
-import {} from 'jasmine'
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { AppComponent } from './app.component'
 import { Router, RouterModule } from '@angular/router'
@@ -7,7 +6,7 @@ import { BlogComponent } from './blog/blog.component'
 import { AboutComponent } from './about/about.component'
 import { FakeBlogArticleSummaryComponent } from './blog/blog-article-summary/fake-blog-article-summary'
 import { BlogArticleDetailComponent } from './blog/blog-article-detail/blog-article-detail.component'
-import { BlogArticle } from './blog/model-objects'
+import ModelObjectFixtures from '../test-utilities/model-object-fixtures'
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>
@@ -17,7 +16,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     const blogArticleServiceSpyStub = {
       getArticles: jasmine.createSpy().and.returnValues(
-        [ new BlogArticle('title-1') ],
+        [ ModelObjectFixtures.blogArticle ],
       ),
     }
     const routerSpy = {
@@ -30,9 +29,9 @@ describe('AppComponent', () => {
         BlogArticleDetailComponent,
         BlogComponent,
         AboutComponent,
-        FakeBlogArticleSummaryComponent
+        FakeBlogArticleSummaryComponent,
       ],
-      imports: [RouterModule.forRoot(routes)],
+      imports: [ RouterModule.forRoot(routes) ],
       providers: [
         { provide: Router, useValue: routerSpy },
       ],
@@ -70,7 +69,7 @@ describe('AppComponent', () => {
       let aboutElement: HTMLButtonElement
 
       beforeEach(() => {
-       aboutElement = subjectHTMLElement.querySelector('.about')
+        aboutElement = subjectHTMLElement.querySelector('.about')
       })
 
       it('has a title', () => {

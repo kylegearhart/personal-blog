@@ -1,8 +1,10 @@
 export class BlogArticle {
   title: string
+  bodyPreview: string
 
-  constructor(title: string) {
+  constructor(title: string, bodyPreview: string) {
     this.title = title
+    this.bodyPreview = bodyPreview
   }
 }
 

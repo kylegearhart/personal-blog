@@ -2,6 +2,7 @@ import { BlogArticleResolverService } from './blog-article-resolver.service'
 import { instance, mock, verify, when } from 'ts-mockito'
 import { asyncData } from '../../test-utilities/async-helper-functions'
 import { BlogArticleService } from './blog-article.service'
+import ModelObjectFixtures from '../../test-utilities/model-object-fixtures'
 
 describe('BlogArticleResolverService', () => {
   let subject: BlogArticleResolverService
@@ -23,11 +24,11 @@ describe('BlogArticleResolverService', () => {
 
     it('always returns stub article titles retrieved from server', (done) => {
       when(spyBlogArticleService.getArticles())
-        .thenReturn(asyncData([ { title: 'blog-article-title' } ]))
+        .thenReturn(asyncData([ ModelObjectFixtures.blogArticle ]))
       subject = new BlogArticleResolverService(instance(spyBlogArticleService))
 
       subject.resolve(null, null).subscribe(actual => {
-        expect(actual).toEqual([ { title: 'blog-article-title' } ])
+        expect(actual).toEqual([ ModelObjectFixtures.blogArticle ])
         done()
       })
     })

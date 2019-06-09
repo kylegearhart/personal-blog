@@ -9,8 +9,8 @@ export class BlogHomePage {
     return element(by.css('.title')).getText();
   }
 
-  static getBlogArticleSummaries() {
-    return element.all(by.css('app-root app-blog-article-summary')).getText();
+  static getBlogArticleSummariesText() {
+    return element.all(by.css('app-root app-blog-article-summary')).getText()
   }
 
   static clickOnSecondBlogArticleSummary() {

@@ -13,13 +13,18 @@ export class StubHttpAdapter implements HttpAdapterInterface {
       case 'articleDetails':
         return asyncData(new BlogArticleDetails('title', 'body'))
       case 'blogArticles':
+        const bodyPreviewText = `
+          This is some arbitrary text to serve as a body preview. I have nothing particular to use,
+          so I'll just type whatever comes to my mind as it does. You know, this probably would serve
+          as enough, but, just to make sure, I'll add this final sentence to round this off.
+        `
         return asyncData([
-          new BlogArticle('first-blog-article'),
-          new BlogArticle('second-blog-article'),
-          new BlogArticle('third-blog-article'),
-          new BlogArticle('fourth-blog-article'),
-          new BlogArticle('fifth-blog-article'),
-          new BlogArticle('sixth-blog-article'),
+          new BlogArticle('first-blog-article', bodyPreviewText),
+          new BlogArticle('second-blog-article', bodyPreviewText),
+          new BlogArticle('third-blog-article', bodyPreviewText),
+          new BlogArticle('fourth-blog-article', bodyPreviewText),
+          new BlogArticle('fifth-blog-article', bodyPreviewText),
+          new BlogArticle('sixth-blog-article', bodyPreviewText),
         ])
     }
 

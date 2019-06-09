@@ -6,12 +6,14 @@ import { Observable, Observer } from 'rxjs'
 import { By } from '@angular/platform-browser'
 import { DebugElement } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
+import ModelObjectFixtures from '../../test-utilities/model-object-fixtures'
+import { BlogArticle } from './model-objects'
 
 describe('BlogComponent', () => {
   let fixture: ComponentFixture<BlogComponent>
   let subjectDebugElement: DebugElement
   let activatedRouteStub: ActivatedRoute
-  let activatedRouteDataObserver: Observer<{ blogArticles: { title: string }[] }>
+  let activatedRouteDataObserver: Observer<{ blogArticles: BlogArticle[] }>
 
   beforeEach(async () => {
     activatedRouteStub = mock(ActivatedRoute)
@@ -33,13 +35,19 @@ describe('BlogComponent', () => {
 
   describe('blog article display', () => {
     it('displays the articles retrieved in the active route data', () => {
-      activatedRouteDataObserver.next({ blogArticles: [ { title: 'title-1' } ] })
+      activatedRouteDataObserver.next({
+        blogArticles: [
+          ModelObjectFixtures.blogArticle,
+          ModelObjectFixtures.blogArticle,
+          ModelObjectFixtures.blogArticle,
+        ],
+      })
       fixture.detectChanges()
 
-      const articleElement = subjectDebugElement.query(
-        By.directive(FakeBlogArticleSummaryComponent),
-      )
-      expect(articleElement.nativeElement.title).toEqual('title-1')
+      const articleElement = subjectDebugElement.queryAll(By.directive(FakeBlogArticleSummaryComponent))
+      expect(articleElement[0].componentInstance.article).toEqual(ModelObjectFixtures.blogArticle)
+      expect(articleElement[1].componentInstance.article).toEqual(ModelObjectFixtures.blogArticle)
+      expect(articleElement[2].componentInstance.article).toEqual(ModelObjectFixtures.blogArticle)
     })
   })
 })

@@ -3,6 +3,7 @@ import { fakeAsync, tick } from '@angular/core/testing'
 import { HttpService } from '../http/http.service'
 import { asyncData } from '../../test-utilities/async-helper-functions'
 import SpyObj = jasmine.SpyObj
+import { BlogArticle } from './model-objects'
 
 describe('BlogArticleService', () => {
   let httpServiceSpyStub: SpyObj<HttpService>
@@ -22,12 +23,14 @@ describe('BlogArticleService', () => {
       expect(serverURL).toEndWith('/api/blogArticles')
     }))
 
-    it('always returns stub article titles retrieved from server', fakeAsync(() => {
-      httpServiceSpyStub.get.and.returnValue(asyncData([ { title: 'blog-article-title' } ]))
+    it('always returns stub articles retrieved from server', fakeAsync(() => {
+      httpServiceSpyStub.get.and.returnValue(asyncData([
+        { title: 'title', bodyPreview: 'body-preview' },
+      ]))
       subject = new BlogArticleService(httpServiceSpyStub)
 
       subject.getArticles().subscribe((result) => {
-        expect(result).toEqual([ { title: 'blog-article-title' } ])
+        expect(result).toEqual([{ title: 'title', bodyPreview: 'body-preview' }])
       })
 
       tick()
