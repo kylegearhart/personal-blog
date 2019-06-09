@@ -6,7 +6,7 @@ import { BlogArticle } from '../model-objects'
 @Component({
   selector: 'app-blog-article-summary',
   templateUrl: './blog-article-summary.component.html',
-  styleUrls: [ './blog-article-summary.component.scss' ],
+  styleUrls: ['./blog-article-summary.component.scss'],
 })
 export class BlogArticleSummaryComponent {
   @Input() article: BlogArticle
@@ -15,8 +15,10 @@ export class BlogArticleSummaryComponent {
   }
 
   navigateToArticleDetail(): void {
-    this.router.navigate([
-      'blog/' + replaceSpacesWithHyphensForDisplayInURL(this.article.title),
-    ])
+    this.router.navigate([this.getArticleDetailUrl()])
+  }
+
+  getArticleDetailUrl() {
+    return 'blog/' + replaceSpacesWithHyphensForDisplayInURL(this.article.title)
   }
 }

@@ -9,7 +9,7 @@ describe('BlogArticleService', () => {
   let subject: BlogArticleService
 
   beforeEach(() => {
-    httpServiceSpyStub = jasmine.createSpyObj<HttpService>('HttpService', [ 'get' ])
+    httpServiceSpyStub = jasmine.createSpyObj<HttpService>('HttpService', ['get'])
   })
 
   describe('retrieving blog articles', () => {
@@ -18,7 +18,7 @@ describe('BlogArticleService', () => {
 
       subject.getArticles()
 
-      const serverURL: string = httpServiceSpyStub.get.calls.mostRecent().args[ 0 ]
+      const serverURL: string = httpServiceSpyStub.get.calls.mostRecent().args[0]
       expect(serverURL).toEndWith('/api/blogArticles')
     }))
 
@@ -29,7 +29,7 @@ describe('BlogArticleService', () => {
       subject = new BlogArticleService(httpServiceSpyStub)
 
       subject.getArticles().subscribe((result) => {
-        expect(result).toEqual([ { title: 'title', bodyPreview: 'body-preview' } ])
+        expect(result).toEqual([{ title: 'title', bodyPreview: 'body-preview' }])
       })
 
       tick()
@@ -42,7 +42,7 @@ describe('BlogArticleService', () => {
 
       subject.getArticleDetails('')
 
-      const serverURL: string = httpServiceSpyStub.get.calls.mostRecent().args[ 0 ]
+      const serverURL: string = httpServiceSpyStub.get.calls.mostRecent().args[0]
       expect(serverURL).toEndWith('/api/articleDetails')
     }))
 
@@ -51,8 +51,8 @@ describe('BlogArticleService', () => {
 
       subject.getArticleDetails('test-title')
 
-      const queryParams: string = httpServiceSpyStub.get.calls.mostRecent().args[ 1 ]
-      expect(queryParams[ 'articleTitle' ]).toEqual('test-title')
+      const queryParams: string = httpServiceSpyStub.get.calls.mostRecent().args[1]
+      expect(queryParams['articleTitle']).toEqual('test-title')
     }))
 
     it('always returns stub article details retrieved from server', fakeAsync(() => {

@@ -21,7 +21,7 @@ describe('BlogArticleDetailComponent', () => {
     }))
 
     await TestBed.configureTestingModule({
-      declarations: [ BlogArticleDetailComponent ],
+      declarations: [BlogArticleDetailComponent],
       providers: [
         { provide: ActivatedRoute, useFactory: () => instance(activatedRouteStub) },
       ],

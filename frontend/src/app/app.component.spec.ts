@@ -6,7 +6,6 @@ import { BlogComponent } from './blog/blog.component'
 import { AboutComponent } from './about/about.component'
 import { FakeBlogArticleSummaryComponent } from './blog/blog-article-summary/fake-blog-article-summary'
 import { BlogArticleDetailComponent } from './blog/blog-article-detail/blog-article-detail.component'
-import ModelObjectFixtures from '../test-utilities/model-object-fixtures'
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>
@@ -14,11 +13,6 @@ describe('AppComponent', () => {
   let subjectInstance: AppComponent
 
   beforeEach(async(() => {
-    const blogArticleServiceSpyStub = {
-      getArticles: jasmine.createSpy().and.returnValues(
-        [ ModelObjectFixtures.blogArticle ],
-      ),
-    }
     const routerSpy = {
       navigate: jasmine.createSpy(),
     }
@@ -31,7 +25,7 @@ describe('AppComponent', () => {
         AboutComponent,
         FakeBlogArticleSummaryComponent,
       ],
-      imports: [ RouterModule.forRoot(routes) ],
+      imports: [RouterModule.forRoot(routes)],
       providers: [
         { provide: Router, useValue: routerSpy },
       ],
@@ -61,7 +55,7 @@ describe('AppComponent', () => {
 
         blogTitleElement.click()
 
-        expect(router.navigate).toHaveBeenCalledWith([ '' ])
+        expect(router.navigate).toHaveBeenCalledWith([''])
       })
     })
 
@@ -81,7 +75,7 @@ describe('AppComponent', () => {
 
         aboutElement.click()
 
-        expect(router.navigate).toHaveBeenCalledWith([ 'about' ])
+        expect(router.navigate).toHaveBeenCalledWith(['about'])
       })
     })
 

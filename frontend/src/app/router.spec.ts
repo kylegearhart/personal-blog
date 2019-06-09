@@ -26,7 +26,7 @@ describe('router', () => {
     spyArticleDetailResolverService = mock(ArticleDetailResolverService)
 
     await TestBed.configureTestingModule({
-      imports: [ RouterTestingModule.withRoutes(routes) ],
+      imports: [RouterTestingModule.withRoutes(routes)],
       declarations: [
         AppComponent,
         AboutComponent,
@@ -40,7 +40,7 @@ describe('router', () => {
           useValue: instance(spyArticleDetailResolverService),
         },
       ],
-      schemas: [ NO_ERRORS_SCHEMA ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents()
 
     router = TestBed.get(Router)
@@ -96,8 +96,8 @@ describe('router', () => {
 
     it('resolves article details using the article title in the url path', () => {
       verify(spyArticleDetailResolverService.resolve(anything(), anything())).once()
-      const [ route ] = capture(spyArticleDetailResolverService.resolve).last()
-      expect(route.params[ 'article-title' ]).toEqual('test-title')
+      const [route] = capture(spyArticleDetailResolverService.resolve).last()
+      expect(route.params['article-title']).toEqual('test-title')
     })
   })
 

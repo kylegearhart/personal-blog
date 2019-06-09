@@ -4,7 +4,7 @@ import { Router } from '@angular/router'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.scss' ],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   linkedInProfileURL = 'https://www.linkedin.com/in/hunter-kyle-gearhart-1a486845'
@@ -13,10 +13,10 @@ export class AppComponent {
   }
 
   showAboutPage(): void {
-    this.router.navigate([ 'about' ])
+    this.router.navigate(['about'])
   }
 
   navigateToMainContents() {
-    this.router.navigate([ '' ])
+    this.router.navigate([''])
   }
 }

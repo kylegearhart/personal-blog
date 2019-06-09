@@ -13,6 +13,6 @@ export class ArticleDetailResolverService implements Resolve<Object> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<BlogArticleDetails> {
-    return this.blogArticleService.getArticleDetails(route.params[ 'article-title' ])
+    return this.blogArticleService.getArticleDetails(route.params['article-title'])
   }
 }

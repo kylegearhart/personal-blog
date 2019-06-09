@@ -11,7 +11,7 @@ describe('HttpService', () => {
 
   describe('get HTTP requests', () => {
     beforeEach(() => {
-      httpClientSpyStub = jasmine.createSpyObj<HttpClientAdapter>('HttpClientAdapter', [ 'get' ])
+      httpClientSpyStub = jasmine.createSpyObj<HttpClientAdapter>('HttpClientAdapter', ['get'])
       subject = new HttpService(httpClientSpyStub)
     })
 

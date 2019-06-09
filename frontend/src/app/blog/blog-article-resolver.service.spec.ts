@@ -24,11 +24,11 @@ describe('BlogArticleResolverService', () => {
 
     it('always returns stub article titles retrieved from server', (done) => {
       when(spyBlogArticleService.getArticles())
-        .thenReturn(asyncData([ ModelObjectFixtures.blogArticle ]))
+        .thenReturn(asyncData([ModelObjectFixtures.blogArticle]))
       subject = new BlogArticleResolverService(instance(spyBlogArticleService))
 
       subject.resolve(null, null).subscribe(actual => {
-        expect(actual).toEqual([ ModelObjectFixtures.blogArticle ])
+        expect(actual).toEqual([ModelObjectFixtures.blogArticle])
         done()
       })
     })
