@@ -12,7 +12,7 @@ import { BlogArticleResolverService } from './blog/blog-article-resolver.service
 import { BlogArticleDetailComponent } from './blog/blog-article-detail/blog-article-detail.component'
 import { ArticleDetailResolverService } from './blog/article-detail-resolver.service'
 import { HttpAdapterInterface } from './http/http.service'
-import { StubHttpAdapter } from './http/stub-http-adapter'
+import { HttpClientAdapter } from './http/http-client-adapter'
 
 export const routes: Routes = [
   { path: '', redirectTo: 'blog', pathMatch: 'full' },
@@ -42,7 +42,7 @@ export const routes: Routes = [
     ArticleDetailResolverService,
     BlogArticleResolverService,
     BlogArticleService,
-    { provide: HttpAdapterInterface, useClass: StubHttpAdapter },
+    { provide: HttpAdapterInterface, useClass: HttpClientAdapter },
   ],
   bootstrap: [ AppComponent ],
 })
