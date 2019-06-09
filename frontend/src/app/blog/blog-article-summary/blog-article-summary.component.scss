@@ -14,15 +14,15 @@
     text-align: end;
   }
 
-  .bodyPreviewContainer {
+  .body-preview-container {
     display: flex;
     flex-flow: column wrap;
 
-    .bodyPreview {
+    .body-preview {
       flex: 0 1 20%;
     }
 
-    .readMoreButton {
+    .read-more-button {
       align-self: flex-end;
       width: 3rem;
       padding: 0.1rem 0.3rem;

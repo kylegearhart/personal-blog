@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { BlogArticleSummaryComponent } from './blog-article-summary.component'
 import { Router } from '@angular/router'
 import ModelObjectFixtures from '../../../test-utilities/model-object-fixtures'
+import { endWith } from 'rxjs/operators'
 
 describe('BlogArticleSummaryComponent', () => {
   let fixture: ComponentFixture<BlogArticleSummaryComponent>
@@ -38,14 +39,17 @@ describe('BlogArticleSummaryComponent', () => {
   })
 
   describe('navigation to article detail screen', () => {
-    let router: Router
-
     beforeEach(() => {
-      router = TestBed.get(Router)
       subjectInstance.article = ModelObjectFixtures.blogArticle
     })
 
     describe('when user clicks anywhere on the element', () => {
+      let router: Router
+
+      beforeEach(() => {
+        router = TestBed.get(Router)
+      })
+
       it('navigates to an article named _article-title_', () => {
         subjectInstance.article.title = 'article-title'
         fixture.detectChanges()
@@ -79,27 +83,21 @@ describe('BlogArticleSummaryComponent', () => {
         subjectInstance.article.title = 'article-title'
         fixture.detectChanges()
 
-        getReadMoreButtonElement().click()
-
-        expect(router.navigate).toHaveBeenCalledWith(['blog/article-title'])
+        expect(getReadMoreButtonElement().href.endsWith('blog/article-title')).toBe(true)
       })
 
       it('navigates to an article named _different-article-title_', () => {
         subjectInstance.article.title = 'different-article-title'
         fixture.detectChanges()
 
-        getReadMoreButtonElement().click()
-
-        expect(router.navigate).toHaveBeenCalledWith(['blog/different-article-title'])
+        expect(getReadMoreButtonElement().href.endsWith('blog/different-article-title')).toBe(true)
       })
 
       it('inserts hyphens for spaces in the article title in the URL', () => {
         subjectInstance.article.title = 'article title with spaces'
         fixture.detectChanges()
 
-        getReadMoreButtonElement().click()
-
-        expect(router.navigate).toHaveBeenCalledWith(['blog/article-title-with-spaces'])
+        expect(getReadMoreButtonElement().href.endsWith('blog/article-title-with-spaces')).toBe(true)
       })
     })
   })
@@ -108,7 +106,7 @@ describe('BlogArticleSummaryComponent', () => {
     return subjectHTMLElement.querySelector('.blog-article-summary')
   }
 
-  function getReadMoreButtonElement(): HTMLElement {
-    return subjectHTMLElement.querySelector('.readMoreButton')
+  function getReadMoreButtonElement(): HTMLAnchorElement {
+    return subjectHTMLElement.querySelector('.read-more-button')
   }
 })
