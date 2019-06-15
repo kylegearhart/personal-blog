@@ -20,14 +20,14 @@ public class HashMapArticleDetailsRepositoryTest {
     ArticleDetails actual = this.subject.getArticleDetails("A-Chance-of-Rain");
 
     assertThat(actual.getTitle(), is(equalTo("A Chance of Rain")));
-    assertThat(actual.getBody(), is(equalTo("Body Text")));
+    assertThat(actual.getBody().contains("Lorem ipsum"), is(equalTo(true)));
   }
 
   @Test
-  public void getArticleDetails_returnsEmptyStringArticleDetails_whenGivenArticleTitleIsAbsentFromTheHashMap() {
+  public void getArticleDetails_returnsDefaultArticleDetails_whenGivenArticleTitleIsAbsentFromTheHashMap() {
     ArticleDetails actual = this.subject.getArticleDetails("A Non-Existent Blog Article Title");
 
-    assertThat(actual.getTitle(), is(equalTo("")));
-    assertThat(actual.getBody(), is(equalTo("")));
+    assertThat(actual.getTitle(), is(equalTo("Lorem Ipsum")));
+    assertThat(actual.getBody().contains("Lorem ipsum"), is(equalTo(true)));
   }
 }
