@@ -1,11 +1,11 @@
 :host {
+  margin: 2rem 0;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
-  align-content: space-evenly;
+  justify-content: space-around;
 }
 
 app-blog-article-summary {
-  flex: 0 1 25%;
-  margin: 2rem;
+  flex: 0 1 30%;
+  margin-bottom: 3rem;
 }

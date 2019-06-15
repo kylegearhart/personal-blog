@@ -1,13 +1,26 @@
 nav {
   display: flex;
-}
-
-.title-link {
-  flex: 1 0 auto;
-}
-
-.links {
-  display: flex;
   align-items: center;
-  flex: 0 0 content;
+  justify-content: space-between;
+  height: 4rem;
+
+  .title-link {
+    flex: 0 0 auto;
+  }
+
+  .links {
+    display: flex;
+
+    a {
+      font-size: 0.8rem;
+    }
+
+    .about {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.router-outlet {
+  margin: 2rem 1rem;
 }

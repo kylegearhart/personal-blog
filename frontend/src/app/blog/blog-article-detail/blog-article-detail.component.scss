@@ -1,0 +1,14 @@
+.article-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    margin-bottom: 1.5rem;
+  }
+
+  .body {
+    width: 100%;
+    text-align: left;
+  }
+}
