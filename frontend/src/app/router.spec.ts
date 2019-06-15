@@ -11,7 +11,7 @@ import { BlogArticleResolverService } from './blog/blog-article-resolver.service
 import { anything, capture, instance, mock, verify, when } from 'ts-mockito'
 import { of } from 'rxjs'
 import { BlogArticleDetailComponent } from './blog/blog-article-detail/blog-article-detail.component'
-import { ArticleDetailResolverService } from './blog/article-detail-resolver.service'
+import { ArticleDetailResolverService } from './blog/blog-article-detail/article-detail-resolver.service'
 
 describe('router', () => {
   let router: Router
