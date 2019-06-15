@@ -1,4 +1,4 @@
-import { BlogHomePage } from './app.po'
+import { BlogHomePage } from './blog.page'
 import { ArticleDetailPage } from './article-detail.page'
 
 describe('personal website', () => {
