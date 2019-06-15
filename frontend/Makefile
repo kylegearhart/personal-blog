@@ -14,3 +14,6 @@ e2e:
 
 test:	unit e2e
 
+run:
+	ng serve
+
